@@ -1,0 +1,28 @@
+name: ablation_wo_gate_icews14
+dataset_name: ICEWS14
+raw_dir: data/local/icews14/raw
+processed_dir: data/processed/icews14
+bie_path: data/local/icews14/bie/entity_metadata.jsonl
+bie_ordered_keys: [entity_type, country, sector, city, region, role, alias, description]
+ontology_keys: [entity_type, country]
+delimiter: "\t"
+seed: 42
+num_epochs: 100
+micro_batch_size: 64
+gradient_accumulation_steps: 16
+learning_rate: 0.001
+warmup_ratio: 0.1
+early_stopping_patience: 10
+output_dir: outputs/ablation_wo_gate_icews14
+log_dir: logs/ablation_wo_gate_icews14
+checkpoint_dir: checkpoints/ablation_wo_gate_icews14
+model:
+  use_llm: true
+  use_tcn: true
+  use_tgn: true
+  use_gate: false
+  use_gs: false
+  use_ni: true
+  use_sl: true
+negative_sampling:
+  mode: ontology_weighted

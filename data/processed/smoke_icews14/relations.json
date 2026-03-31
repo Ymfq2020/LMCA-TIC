@@ -1,0 +1,14 @@
+{
+  "relations": [
+    "aid",
+    "criticize",
+    "meet",
+    "sanction"
+  ],
+  "inverse_relations": [
+    "aid__inverse",
+    "criticize__inverse",
+    "meet__inverse",
+    "sanction__inverse"
+  ]
+}

@@ -1,0 +1,5 @@
+USA	meet	UN	1
+China	criticize	USA	2
+UN	sanction	GroupA	3
+France	aid	GroupA	4
+USA	aid	GroupA	5

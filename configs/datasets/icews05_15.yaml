@@ -1,0 +1,20 @@
+name: dataset_icews05_15
+dataset_name: ICEWS05-15
+raw_dir: data/local/icews05_15/raw
+processed_dir: data/processed/icews05_15
+bie_path: data/local/icews05_15/bie/entity_metadata.jsonl
+bie_ordered_keys:
+  - entity_type
+  - country
+  - sector
+  - city
+  - region
+  - role
+  - alias
+  - description
+ontology_keys:
+  - entity_type
+  - country
+delimiter: "\t"
+metadata:
+  notes: "正式 ICEWS05-15 本地挂载配置"

@@ -1,0 +1,56 @@
+{
+  "USA\tmeet\t1": [
+    "UN"
+  ],
+  "UN\tmeet__inverse\t1": [
+    "USA"
+  ],
+  "China\tcriticize\t2": [
+    "USA"
+  ],
+  "USA\tcriticize__inverse\t2": [
+    "China"
+  ],
+  "UN\tsanction\t3": [
+    "GroupA"
+  ],
+  "GroupA\tsanction__inverse\t3": [
+    "UN"
+  ],
+  "France\taid\t4": [
+    "GroupA"
+  ],
+  "GroupA\taid__inverse\t4": [
+    "France"
+  ],
+  "USA\taid\t5": [
+    "GroupA"
+  ],
+  "GroupA\taid__inverse\t5": [
+    "USA"
+  ],
+  "China\tmeet\t6": [
+    "UN"
+  ],
+  "UN\tmeet__inverse\t6": [
+    "China"
+  ],
+  "France\tcriticize\t7": [
+    "GroupA"
+  ],
+  "GroupA\tcriticize__inverse\t7": [
+    "France"
+  ],
+  "NewOrg\tmeet\t8": [
+    "UN"
+  ],
+  "UN\tmeet__inverse\t8": [
+    "NewOrg"
+  ],
+  "USA\tsanction\t9": [
+    "NewOrg"
+  ],
+  "NewOrg\tsanction__inverse\t9": [
+    "USA"
+  ]
+}

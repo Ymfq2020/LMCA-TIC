@@ -1,0 +1,21 @@
+name: micro_v1_gs_icews14
+dataset_name: ICEWS14
+raw_dir: data/local/icews14/raw
+processed_dir: data/processed/icews14
+bie_path: data/local/icews14/bie/entity_metadata.jsonl
+bie_ordered_keys: [entity_type, country, sector, city, region, role, alias, description]
+ontology_keys: [entity_type, country]
+delimiter: "\t"
+output_dir: outputs/micro_v1_gs_icews14
+log_dir: logs/micro_v1_gs_icews14
+checkpoint_dir: checkpoints/micro_v1_gs_icews14
+model:
+  use_llm: true
+  use_tcn: true
+  use_tgn: true
+  use_gate: true
+  use_gs: true
+  use_ni: false
+  use_sl: false
+negative_sampling:
+  mode: ontology_weighted

@@ -1,0 +1,22 @@
+name: negative_contrastive_icews14
+dataset_name: ICEWS14
+raw_dir: data/local/icews14/raw
+processed_dir: data/processed/icews14
+bie_path: data/local/icews14/bie/entity_metadata.jsonl
+bie_ordered_keys: [entity_type, country, sector, city, region, role, alias, description]
+ontology_keys: [entity_type, country]
+delimiter: "\t"
+output_dir: outputs/negative_contrastive_icews14
+log_dir: logs/negative_contrastive_icews14
+checkpoint_dir: checkpoints/negative_contrastive_icews14
+model:
+  use_llm: true
+  use_tcn: true
+  use_tgn: true
+  use_gate: true
+negative_sampling:
+  mode: contrastive_equal
+  k_recall: 256
+  n_neg: 64
+  tau: 0.7
+  alpha: 0.5

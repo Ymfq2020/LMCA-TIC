@@ -1,0 +1,53 @@
+name: full_icews05_15
+dataset_name: ICEWS05-15
+raw_dir: data/local/icews05_15/raw
+processed_dir: data/processed/icews05_15
+bie_path: data/local/icews05_15/bie/entity_metadata.jsonl
+bie_ordered_keys: [entity_type, country, sector, city, region, role, alias, description]
+ontology_keys: [entity_type, country]
+delimiter: "\t"
+seed: 42
+num_epochs: 100
+micro_batch_size: 64
+eval_batch_size: 8
+gradient_accumulation_steps: 16
+num_workers: 4
+learning_rate: 0.001
+warmup_ratio: 0.1
+early_stopping_patience: 10
+amp_enabled: true
+enable_data_parallel: false
+candidate_chunk_size: 64
+output_dir: outputs/full_icews05_15
+log_dir: logs/full_icews05_15
+checkpoint_dir: checkpoints/full_icews05_15
+baseline_reference_path: references/table3_2_reference.csv
+model:
+  llm_name: Qwen/Qwen3-8B
+  smoke_llm_name: distilbert-base-uncased
+  embedding_dim: 200
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  tcn_kernel_size: 2
+  tcn_dilations: [1, 2, 4, 8]
+  tgn_neighbor_size: 10
+  tgn_time_window_days: 30
+  tgn_memory_dim: 200
+  tgn_time_decay_init: 0.1
+  fusion_hidden_dim: 128
+  use_llm: true
+  use_tcn: true
+  use_tgn: true
+  use_gate: true
+  use_gs: false
+  use_ni: true
+  use_sl: true
+  use_4bit: true
+negative_sampling:
+  mode: ontology_weighted
+  k_recall: 256
+  n_neg: 64
+  tau: 0.7
+  alpha: 0.5
+  faiss_enabled: false

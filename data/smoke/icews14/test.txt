@@ -1,0 +1,2 @@
+NewOrg	meet	UN	8
+USA	sanction	NewOrg	9
