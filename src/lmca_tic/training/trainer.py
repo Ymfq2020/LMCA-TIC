@@ -76,6 +76,7 @@ class LMCATICTrainer:
         self.entity_to_idx = {entity_id: idx for idx, entity_id in enumerate(self.entities)}
         self.entity_prompts = {entity_id: self._entity_prompt(entity_id) for entity_id in self.entities}
         self.entity_types = {entity_id: self._entity_types(entity_id) for entity_id in self.entities}
+        self.entity_popularity = self._build_entity_popularity(self.train_dataset.samples) if hasattr(self, "train_dataset") else {}
         self.relation_to_idx = {
             relation: idx
             for idx, relation in enumerate(
@@ -85,6 +86,8 @@ class LMCATICTrainer:
         self.train_dataset = LocalProcessedDataset(config.processed_dir, "train")
         self.valid_dataset = LocalProcessedDataset(config.processed_dir, "valid")
         self.test_dataset = LocalProcessedDataset(config.processed_dir, "test")
+        self.entity_popularity = self._build_entity_popularity(self.train_dataset.samples)
+        self.entities_by_type = self._build_entities_by_type()
         self.entity_neighbor_cache, self.entity_delta_cache = self._build_entity_context_cache(self.train_dataset.samples)
         artifact = KGISTSummaryMiner(min_support=1).mine(self.train_dataset.samples)
         self.negative_scorer = NegativeErrorScorer(artifact)
@@ -333,9 +336,11 @@ class LMCATICTrainer:
         )
         negative_candidates = []
         if forced_negative_candidates is None:
-            candidate_scores_batch = self._current_candidate_scores_batch(samples)
+            candidate_pools = [self._candidate_pool_for_sample(sample) for sample in samples]
+            candidate_scores_batch = self._current_candidate_scores_batch(samples, candidate_pools)
         else:
             candidate_scores_batch = None
+            candidate_pools = None
         for sample_index, sample in enumerate(samples):
             if forced_negative_candidates is not None:
                 negative_candidates.append(list(forced_negative_candidates))
@@ -419,7 +424,7 @@ class LMCATICTrainer:
             "negative_mask": torch.tensor(padded_mask, dtype=torch.bool),
         }
 
-    def _current_candidate_scores_batch(self, samples) -> list[dict[str, float]]:
+    def _current_candidate_scores_batch(self, samples, candidate_pools: list[list[str]]) -> list[dict[str, float]]:
         model = self._model_module()
         was_training = model.training
         model.eval()
@@ -443,42 +448,46 @@ class LMCATICTrainer:
                     neighbor_deltas=subject_neighbor_deltas,
                 )
                 candidate_score_rows = [dict() for _ in samples]
-                entity_ids_all = list(self.entities.keys())
-                for start in range(0, len(entity_ids_all), self.config.candidate_chunk_size):
-                    entity_chunk = entity_ids_all[start : start + self.config.candidate_chunk_size]
-                    chunk_size = len(entity_chunk)
-                    flat_prompts = []
-                    flat_entity_ids = []
-                    flat_relation_histories = []
-                    neighbor_lists = []
-                    delta_lists = []
-                    for sample in samples:
-                        for entity_id in entity_chunk:
-                            flat_prompts.append(self.entity_prompts[entity_id])
-                            flat_entity_ids.append(self.entity_to_idx[entity_id])
-                            flat_relation_histories.append(sample.relation_history)
-                            neighbor_lists.append(self.entity_neighbor_cache.get(entity_id, []))
-                            delta_lists.append(self.entity_delta_cache.get(entity_id, []))
-                    tokenized_prompts = model.text_encoder.tokenize_texts(flat_prompts, device=self.device)
-                    entity_ids_tensor = torch.tensor(flat_entity_ids, dtype=torch.long, device=self.device)
-                    relation_histories_tensor = torch.tensor(flat_relation_histories, dtype=torch.float32, device=self.device)
-                    candidate_neighbor_ids, candidate_neighbor_deltas = self._pad_neighbors(neighbor_lists, delta_lists)
-                    candidate_neighbor_ids = candidate_neighbor_ids.to(self.device)
-                    candidate_neighbor_deltas = candidate_neighbor_deltas.to(self.device)
-                    candidate_embed, _ = model.encode_entities(
-                        prompts=tokenized_prompts,
-                        relation_histories=relation_histories_tensor,
-                        entity_ids=entity_ids_tensor,
-                        neighbor_ids=candidate_neighbor_ids,
-                        neighbor_deltas=candidate_neighbor_deltas,
-                    )
-                    repeated_subject = subject_embed.repeat_interleave(chunk_size, dim=0)
-                    repeated_relations = relation_ids.repeat_interleave(chunk_size, dim=0)
-                    scores = model.scorer(repeated_subject, repeated_relations, candidate_embed)
-                    score_matrix = scores.reshape(len(samples), chunk_size).detach().cpu()
-                    for row_idx, _sample in enumerate(samples):
-                        for col_idx, entity_id in enumerate(entity_chunk):
-                            candidate_score_rows[row_idx][entity_id] = float(score_matrix[row_idx, col_idx].item())
+                for row_idx, sample in enumerate(samples):
+                    pool = candidate_pools[row_idx]
+                    if not pool:
+                        continue
+                    for start in range(0, len(pool), self.config.candidate_chunk_size):
+                        entity_chunk = pool[start : start + self.config.candidate_chunk_size]
+                        if not entity_chunk:
+                            continue
+                        tokenized_prompts = model.text_encoder.tokenize_texts(
+                            [self.entity_prompts[entity_id] for entity_id in entity_chunk],
+                            device=self.device,
+                        )
+                        entity_ids_tensor = torch.tensor(
+                            [self.entity_to_idx[entity_id] for entity_id in entity_chunk],
+                            dtype=torch.long,
+                            device=self.device,
+                        )
+                        relation_histories_tensor = torch.tensor(
+                            [sample.relation_history for _ in entity_chunk],
+                            dtype=torch.float32,
+                            device=self.device,
+                        )
+                        candidate_neighbor_ids, candidate_neighbor_deltas = self._pad_neighbors(
+                            [self.entity_neighbor_cache.get(entity_id, []) for entity_id in entity_chunk],
+                            [self.entity_delta_cache.get(entity_id, []) for entity_id in entity_chunk],
+                        )
+                        candidate_neighbor_ids = candidate_neighbor_ids.to(self.device)
+                        candidate_neighbor_deltas = candidate_neighbor_deltas.to(self.device)
+                        candidate_embed, _ = model.encode_entities(
+                            prompts=tokenized_prompts,
+                            relation_histories=relation_histories_tensor,
+                            entity_ids=entity_ids_tensor,
+                            neighbor_ids=candidate_neighbor_ids,
+                            neighbor_deltas=candidate_neighbor_deltas,
+                        )
+                        repeated_subject = subject_embed[row_idx : row_idx + 1].repeat(len(entity_chunk), 1)
+                        repeated_relations = relation_ids[row_idx : row_idx + 1].repeat(len(entity_chunk))
+                        scores = model.scorer(repeated_subject, repeated_relations, candidate_embed).detach().cpu()
+                        for entity_id, score in zip(entity_chunk, scores):
+                            candidate_score_rows[row_idx][entity_id] = float(score.item())
         if was_training:
             model.train()
         return candidate_score_rows
@@ -538,6 +547,64 @@ class LMCATICTrainer:
             neighbor_cache[entity_id] = neighbors
             delta_cache[entity_id] = deltas
         return neighbor_cache, delta_cache
+
+    def _build_entity_popularity(self, samples):
+        popularity = defaultdict(int)
+        for sample in samples:
+            popularity[sample.quadruple.subject] += 1
+            popularity[sample.quadruple.object] += 1
+        return popularity
+
+    def _build_entities_by_type(self):
+        entities_by_type = defaultdict(list)
+        for entity_id, entity_types in self.entity_types.items():
+            for entity_type in entity_types:
+                entities_by_type[entity_type].append(entity_id)
+        for entity_type in entities_by_type:
+            entities_by_type[entity_type].sort(key=lambda entity_id: self.entity_popularity.get(entity_id, 0), reverse=True)
+        return entities_by_type
+
+    def _candidate_pool_for_sample(self, sample):
+        allowed_tail_types = self.negative_scorer.allowed_tail_types(sample.quadruple.relation)
+        candidate_entities: list[str] = []
+        if allowed_tail_types:
+            seen = set()
+            for entity_type in allowed_tail_types:
+                for entity_id in self.entities_by_type.get(entity_type, []):
+                    if entity_id not in seen:
+                        candidate_entities.append(entity_id)
+                        seen.add(entity_id)
+        else:
+            candidate_entities = sorted(
+                self.entities.keys(),
+                key=lambda entity_id: self.entity_popularity.get(entity_id, 0),
+                reverse=True,
+            )
+        pool_size = min(
+            len(candidate_entities),
+            max(
+                self.config.negative_sampling.k_recall * 4,
+                self.config.negative_sampling.n_neg * 16,
+                128,
+            ),
+        )
+        pool = [
+            entity_id
+            for entity_id in candidate_entities[:pool_size]
+            if entity_id != sample.quadruple.object
+        ]
+        if not pool:
+            fallback = [
+                entity_id
+                for entity_id in sorted(
+                    self.entities.keys(),
+                    key=lambda entity_id: self.entity_popularity.get(entity_id, 0),
+                    reverse=True,
+                )
+                if entity_id != sample.quadruple.object
+            ]
+            pool = fallback[: max(self.config.negative_sampling.k_recall, self.config.negative_sampling.n_neg, 16)]
+        return pool
 
     def _entity_prompt(self, entity_id: str) -> str:
         record = self.entities[entity_id]
