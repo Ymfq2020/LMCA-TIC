@@ -1,6 +1,8 @@
 """LLM text encoder for Eq. (3-2) and Eq. (3-3)."""
 
 from __future__ import annotations
+from pathlib import Path
+
 
 from collections.abc import Mapping
 from types import SimpleNamespace
@@ -71,12 +73,21 @@ class LLMTextEncoder(_BaseModule):
                 bnb_4bit_compute_dtype=torch.float16,
             )
         model_name = config.smoke_llm_name if smoke_mode else config.llm_name
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+        local_files_only = Path(model_name).exists()
+
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            model_name,
+            trust_remote_code=True,
+            local_files_only=local_files_only,
+        )
+
         base_model = AutoModel.from_pretrained(
             model_name,
             trust_remote_code=True,
             quantization_config=quantization_config,
+            local_files_only=local_files_only,
         )
+
         if (
             not smoke_mode
             and get_peft_model is not None
