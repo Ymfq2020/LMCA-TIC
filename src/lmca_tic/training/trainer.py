@@ -583,9 +583,9 @@ class LMCATICTrainer:
         pool_size = min(
             len(candidate_entities),
             max(
-                self.config.negative_sampling.k_recall * 4,
-                self.config.negative_sampling.n_neg * 16,
-                128,
+                self.config.negative_sampling.k_recall,
+                self.config.negative_sampling.n_neg * 4,
+                16,
             ),
         )
         pool = [
@@ -603,7 +603,7 @@ class LMCATICTrainer:
                 )
                 if entity_id != sample.quadruple.object
             ]
-            pool = fallback[: max(self.config.negative_sampling.k_recall, self.config.negative_sampling.n_neg, 16)]
+            pool = fallback[: max(self.config.negative_sampling.k_recall, self.config.negative_sampling.n_neg * 2, 8)]
         return pool
 
     def _entity_prompt(self, entity_id: str) -> str:
