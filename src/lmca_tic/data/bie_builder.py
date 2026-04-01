@@ -8,11 +8,30 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 
+try:
+    from tqdm.auto import tqdm
+except ImportError:  # pragma: no cover - optional dependency
+    tqdm = None
+
 from lmca_tic.utils.io import ensure_dir
+
+
+def _progress(iterable, total: int | None = None, desc: str = ""):
+    if tqdm is None:
+        return iterable
+    return tqdm(
+        iterable,
+        total=total,
+        desc=desc,
+        leave=False,
+        dynamic_ncols=True,
+        disable=not sys.stderr.isatty(),
+    )
 
 
 COUNTRY_HINTS = {
@@ -217,19 +236,20 @@ class OfflineBIEBuilder:
         output_path = Path(output_path)
         ensure_dir(output_path.parent)
         with output_path.open("w", encoding="utf-8") as handle:
-            for entity_id in sorted(records):
+            for entity_id in _progress(sorted(records), total=len(records), desc="write bie"):
                 handle.write(json.dumps(records[entity_id], ensure_ascii=False) + "\n")
         return records
 
     def collect_stats(self, raw_dir: str | Path) -> dict[str, EntityStats]:
         raw_dir = Path(raw_dir)
         stats: dict[str, EntityStats] = {}
-        for split in ("train", "valid", "test"):
+        for split in _progress(("train", "valid", "test"), total=3, desc="bie splits"):
             path = raw_dir / f"{split}.txt"
             if not path.exists():
                 continue
+            total_lines = self._count_lines(path)
             with path.open("r", encoding="utf-8") as handle:
-                for line in handle:
+                for line in _progress(handle, total=total_lines, desc=f"bie {split}"):
                     line = line.strip()
                     if not line:
                         continue
@@ -401,3 +421,7 @@ class OfflineBIEBuilder:
         if len(parts) != 4:
             raise ValueError(f"Expected 4 columns, got {len(parts)} in line: {line}")
         return parts[0], parts[1], parts[2], parts[3]
+
+    def _count_lines(self, path: Path) -> int:
+        with path.open("r", encoding="utf-8") as handle:
+            return sum(1 for _ in handle)

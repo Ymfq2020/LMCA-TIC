@@ -2,15 +2,34 @@
 
 from __future__ import annotations
 
+import sys
 from collections import Counter, defaultdict
 from dataclasses import asdict
 from pathlib import Path
 from typing import Iterable
 
+try:
+    from tqdm.auto import tqdm
+except ImportError:  # pragma: no cover - optional dependency
+    tqdm = None
+
 from lmca_tic.config.schemas import ExperimentConfig
 from lmca_tic.data.bie import BIEPromptBuilder, empty_bie_record, load_bie_records
 from lmca_tic.data.types import ProcessedSample, TemporalQuadruple
 from lmca_tic.utils.io import ensure_dir, write_json, write_jsonl
+
+
+def _progress(iterable, total: int | None = None, desc: str = ""):
+    if tqdm is None:
+        return iterable
+    return tqdm(
+        iterable,
+        total=total,
+        desc=desc,
+        leave=False,
+        dynamic_ncols=True,
+        disable=not sys.stderr.isatty(),
+    )
 
 
 class LocalTKGPreprocessor:
@@ -28,10 +47,9 @@ class LocalTKGPreprocessor:
         )
 
     def run(self) -> dict[str, object]:
-        splits = {
-            split: self._load_split(split)
-            for split in ("train", "valid", "test")
-        }
+        splits = {}
+        for split in _progress(("train", "valid", "test"), total=3, desc="load splits"):
+            splits[split] = self._load_split(split)
         train_entities = {q.subject for q in splits["train"]} | {q.object for q in splits["train"]}
         all_entities = sorted(
             {
@@ -48,14 +66,14 @@ class LocalTKGPreprocessor:
         split_payloads: dict[str, list[dict[str, object]]] = {}
         inductive_stats: dict[str, int] = defaultdict(int)
 
-        for split, quadruples in splits.items():
+        for split, quadruples in _progress(splits.items(), total=len(splits), desc="build processed splits"):
             processed_samples = [
                 self._build_sample(
                     q,
                     history=splits["train"] if split != "train" else quadruples,
                     train_entities=train_entities,
                 )
-                for q in quadruples
+                for q in _progress(quadruples, total=len(quadruples), desc=f"samples {split}")
             ]
             split_payloads[split] = [sample.to_dict() for sample in processed_samples]
             inductive_stats[f"{split}_inductive"] = sum(sample.quadruple.is_inductive for sample in processed_samples)
@@ -84,8 +102,9 @@ class LocalTKGPreprocessor:
     def _load_split(self, split: str) -> list[TemporalQuadruple]:
         path = self.raw_dir / f"{split}.txt"
         quadruples: list[TemporalQuadruple] = []
+        total_lines = self._count_lines(path)
         with path.open("r", encoding="utf-8") as handle:
-            for line in handle:
+            for line in _progress(handle, total=total_lines, desc=f"read {split}"):
                 line = line.strip()
                 if not line:
                     continue
@@ -100,6 +119,10 @@ class LocalTKGPreprocessor:
                     )
                 )
         return sorted(quadruples, key=lambda item: item.timestamp)
+
+    def _count_lines(self, path: Path) -> int:
+        with path.open("r", encoding="utf-8") as handle:
+            return sum(1 for _ in handle)
 
     def _build_sample(
         self,
