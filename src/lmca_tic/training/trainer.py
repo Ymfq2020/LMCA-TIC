@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import sys
 import time
 from collections import defaultdict
 from contextlib import nullcontext
@@ -20,6 +21,11 @@ except ImportError:  # pragma: no cover - optional dependency
     AdamW = None
     DataLoader = None
 
+try:
+    from tqdm.auto import tqdm
+except ImportError:  # pragma: no cover - optional dependency
+    tqdm = None
+
 from lmca_tic.config.loader import dump_experiment_config
 from lmca_tic.config.schemas import ExperimentConfig
 from lmca_tic.data.dataset import LocalProcessedDataset
@@ -36,6 +42,19 @@ from lmca_tic.utils.seed import set_global_seed
 
 def _identity_collate(batch):
     return batch
+
+
+def _build_progress(iterable, total: int, desc: str):
+    if tqdm is None:
+        return iterable
+    return tqdm(
+        iterable,
+        total=total,
+        desc=desc,
+        leave=False,
+        dynamic_ncols=True,
+        disable=not sys.stderr.isatty(),
+    )
 
 
 class LMCATICTrainer:
@@ -97,6 +116,7 @@ class LMCATICTrainer:
             total_steps=self.total_optimization_steps,
             warmup_ratio=config.warmup_ratio,
         )
+        self._log_runtime_diagnostics()
         write_json(
             self.output_dir / "graph_summary.json",
             {
@@ -137,7 +157,12 @@ class LMCATICTrainer:
             self.optimizer.zero_grad(set_to_none=True)
             epoch_loss = 0.0
             num_batches = 0
-            for batch_index, samples in enumerate(self.train_loader, start=1):
+            progress = _build_progress(
+                enumerate(self.train_loader, start=1),
+                total=len(self.train_loader),
+                desc=f"train epoch {epoch}",
+            )
+            for batch_index, samples in progress:
                 batch = self._build_batch(samples)
                 batch = self._move_batch_to_device(batch)
                 with self._autocast():
@@ -166,6 +191,12 @@ class LMCATICTrainer:
 
                 epoch_loss += float(loss.detach().item())
                 num_batches += 1
+                if tqdm is not None and hasattr(progress, "set_postfix"):
+                    progress.set_postfix(
+                        loss=f"{epoch_loss / max(num_batches, 1):.4f}",
+                        lr=f"{self.optimizer.param_groups[0]['lr']:.2e}",
+                        opt_steps=optimizer_steps,
+                    )
 
             valid_metrics = self.evaluate(split="valid")
             step_time = time.perf_counter() - start
@@ -213,7 +244,8 @@ class LMCATICTrainer:
         }[split]
         evaluator = FilteredEvaluator(self.filtered_targets)
         predictions: list[dict[str, object]] = []
-        for sample in dataset.samples:
+        progress = _build_progress(dataset.samples, total=len(dataset.samples), desc=f"eval {split}")
+        for sample in progress:
             predictions.append(self._predict_sample(sample))
         metrics = evaluator.evaluate(predictions).to_dict()
         write_json(self.output_dir / f"{split}_metrics.json", metrics)
@@ -506,3 +538,32 @@ class LMCATICTrainer:
         if not self.use_amp:
             return nullcontext()
         return torch.cuda.amp.autocast(dtype=torch.float16)
+
+    def _log_runtime_diagnostics(self) -> None:
+        self.logger.info(
+            "runtime device=%s cuda_available=%s cuda_device_count=%s amp=%s data_parallel=%s",
+            self.device,
+            torch.cuda.is_available(),
+            torch.cuda.device_count() if torch.cuda.is_available() else 0,
+            self.use_amp,
+            self.enable_data_parallel,
+        )
+        self.logger.info(
+            "dataset sizes train=%s valid=%s test=%s micro_batch=%s grad_accum=%s eval_batch=%s candidate_chunk=%s",
+            len(self.train_dataset),
+            len(self.valid_dataset),
+            len(self.test_dataset),
+            self.config.micro_batch_size,
+            self.config.gradient_accumulation_steps,
+            self.config.eval_batch_size,
+            self.config.candidate_chunk_size,
+        )
+        if torch.cuda.is_available():
+            props = torch.cuda.get_device_properties(self.device)
+            self.logger.info(
+                "gpu name=%s total_memory_gb=%.2f capability=%s.%s",
+                props.name,
+                props.total_memory / (1024 ** 3),
+                props.major,
+                props.minor,
+            )
