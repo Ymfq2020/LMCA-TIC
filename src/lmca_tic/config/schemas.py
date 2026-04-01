@@ -64,6 +64,7 @@ class ExperimentConfig:
     amp_enabled: bool = True
     enable_data_parallel: bool = False
     candidate_chunk_size: int = 64
+    log_every_n_steps: int = 10
     output_dir: str = "outputs/default"
     log_dir: str = "logs/default"
     checkpoint_dir: str = "checkpoints/default"

@@ -18,6 +18,7 @@ early_stopping_patience: 10
 amp_enabled: true
 enable_data_parallel: false
 candidate_chunk_size: 64
+log_every_n_steps: 10
 output_dir: outputs/full_icews14
 log_dir: logs/full_icews14
 checkpoint_dir: checkpoints/full_icews14

@@ -60,7 +60,10 @@ class TemporalGraphEncoder(_BaseModule):
         raw_attn = (query * key).sum(dim=-1) / math.sqrt(center.size(-1))
         raw_attn = raw_attn * torch.exp(-torch.abs(self.time_decay) * neighbor_deltas)
         if pyg_softmax is not None:
-            batch_index = torch.arange(raw_attn.size(0)).repeat_interleave(raw_attn.size(1))
+            batch_index = torch.arange(
+                raw_attn.size(0),
+                device=raw_attn.device,
+            ).repeat_interleave(raw_attn.size(1))
             attn = pyg_softmax(raw_attn.reshape(-1), batch_index).reshape_as(raw_attn)
         else:
             attn = torch.softmax(raw_attn, dim=-1)

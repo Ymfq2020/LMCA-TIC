@@ -45,6 +45,7 @@ def dump_experiment_config(config: ExperimentConfig) -> dict[str, Any]:
         "amp_enabled": config.amp_enabled,
         "enable_data_parallel": config.enable_data_parallel,
         "candidate_chunk_size": config.candidate_chunk_size,
+        "log_every_n_steps": config.log_every_n_steps,
         "output_dir": config.output_dir,
         "log_dir": config.log_dir,
         "checkpoint_dir": config.checkpoint_dir,

@@ -18,6 +18,7 @@ early_stopping_patience: 2
 amp_enabled: false
 enable_data_parallel: false
 candidate_chunk_size: 8
+log_every_n_steps: 1
 output_dir: outputs/smoke_icews14
 log_dir: logs/smoke_icews14
 checkpoint_dir: checkpoints/smoke_icews14

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import subprocess
 import sys
 import time
 from collections import defaultdict
@@ -105,7 +106,7 @@ class LMCATICTrainer:
             self.model = nn.DataParallel(self.model)
         self.optimizer = AdamW(self._model_module().parameters(), lr=config.learning_rate)
         self.loss_fn = nn.BCEWithLogitsLoss()
-        self.scaler = torch.cuda.amp.GradScaler(enabled=self.use_amp)
+        self.scaler = torch.amp.GradScaler("cuda", enabled=self.use_amp)
         self.train_loader = self._build_dataloader(self.train_dataset, batch_size=config.micro_batch_size, shuffle=True)
         self.valid_loader = self._build_dataloader(self.valid_dataset, batch_size=config.eval_batch_size, shuffle=False)
         self.test_loader = self._build_dataloader(self.test_dataset, batch_size=config.eval_batch_size, shuffle=False)
@@ -157,12 +158,14 @@ class LMCATICTrainer:
             self.optimizer.zero_grad(set_to_none=True)
             epoch_loss = 0.0
             num_batches = 0
+            epoch_batches = len(self.train_loader)
             progress = _build_progress(
                 enumerate(self.train_loader, start=1),
-                total=len(self.train_loader),
+                total=epoch_batches,
                 desc=f"train epoch {epoch}",
             )
             for batch_index, samples in progress:
+                batch_start = time.perf_counter()
                 batch = self._build_batch(samples)
                 batch = self._move_batch_to_device(batch)
                 with self._autocast():
@@ -191,11 +194,41 @@ class LMCATICTrainer:
 
                 epoch_loss += float(loss.detach().item())
                 num_batches += 1
+                elapsed = max(time.perf_counter() - start, 1e-6)
+                batches_per_sec = num_batches / elapsed
+                remaining_batches = max(epoch_batches - batch_index, 0)
+                epoch_eta_sec = remaining_batches / max(batches_per_sec, 1e-6)
+                batch_step_sec = time.perf_counter() - batch_start
                 if tqdm is not None and hasattr(progress, "set_postfix"):
                     progress.set_postfix(
                         loss=f"{epoch_loss / max(num_batches, 1):.4f}",
                         lr=f"{self.optimizer.param_groups[0]['lr']:.2e}",
                         opt_steps=optimizer_steps,
+                        step_s=f"{batch_step_sec:.2f}",
+                        bps=f"{batches_per_sec:.2f}",
+                        eta=f"{epoch_eta_sec / 60:.1f}m",
+                    )
+                if (
+                    optimizer_steps > 0
+                    and optimizer_steps % max(self.config.log_every_n_steps, 1) == 0
+                    and should_step
+                ):
+                    gpu_stats = self._query_gpu_stats()
+                    self.logger.info(
+                        "epoch=%s/%s batch=%s/%s opt_step=%s loss=%.6f lr=%.6g batch_step_sec=%.3f batches_per_sec=%.3f epoch_eta_sec=%.1f gpu_util=%s gpu_mem_mb=%s/%s",
+                        epoch,
+                        self.config.num_epochs,
+                        batch_index,
+                        epoch_batches,
+                        optimizer_steps,
+                        epoch_loss / max(num_batches, 1),
+                        self.optimizer.param_groups[0]["lr"],
+                        batch_step_sec,
+                        batches_per_sec,
+                        epoch_eta_sec,
+                        gpu_stats["utilization_gpu"],
+                        gpu_stats["memory_used_mb"],
+                        gpu_stats["memory_total_mb"],
                     )
 
             valid_metrics = self.evaluate(split="valid")
@@ -215,11 +248,13 @@ class LMCATICTrainer:
             }
             history.append(record)
             self.logger.info(
-                "epoch=%s loss=%.6f valid_mrr=%.4f lr=%.6g",
+                "epoch=%s loss=%.6f valid_mrr=%.4f lr=%.6g epoch_sec=%.2f peak_mem_mb=%.1f",
                 epoch,
                 record["loss"],
                 record["valid_mrr"],
                 record["lr"],
+                step_time,
+                record["peak_memory"] / (1024 ** 2) if torch.cuda.is_available() else 0.0,
             )
             if record["valid_mrr"] > best_mrr:
                 best_mrr = record["valid_mrr"]
@@ -537,7 +572,7 @@ class LMCATICTrainer:
     def _autocast(self):
         if not self.use_amp:
             return nullcontext()
-        return torch.cuda.amp.autocast(dtype=torch.float16)
+        return torch.amp.autocast("cuda", dtype=torch.float16)
 
     def _log_runtime_diagnostics(self) -> None:
         self.logger.info(
@@ -567,3 +602,41 @@ class LMCATICTrainer:
                 props.major,
                 props.minor,
             )
+            gpu_stats = self._query_gpu_stats()
+            self.logger.info(
+                "gpu initial util=%s mem_mb=%s/%s",
+                gpu_stats["utilization_gpu"],
+                gpu_stats["memory_used_mb"],
+                gpu_stats["memory_total_mb"],
+            )
+
+    def _query_gpu_stats(self) -> dict[str, str]:
+        default = {
+            "utilization_gpu": "NA",
+            "memory_used_mb": "NA",
+            "memory_total_mb": "NA",
+        }
+        if not torch.cuda.is_available():
+            return default
+        try:
+            output = subprocess.check_output(
+                [
+                    "nvidia-smi",
+                    "--query-gpu=utilization.gpu,memory.used,memory.total",
+                    "--format=csv,noheader,nounits",
+                ],
+                stderr=subprocess.DEVNULL,
+                text=True,
+            ).strip()
+            lines = [line.strip() for line in output.splitlines() if line.strip()]
+            device_index = self.device.index or 0
+            if device_index >= len(lines):
+                return default
+            util, mem_used, mem_total = [part.strip() for part in lines[device_index].split(",")]
+            return {
+                "utilization_gpu": util,
+                "memory_used_mb": mem_used,
+                "memory_total_mb": mem_total,
+            }
+        except Exception:
+            return default
