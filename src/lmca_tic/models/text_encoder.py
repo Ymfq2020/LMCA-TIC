@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from types import SimpleNamespace
 
 try:
@@ -98,12 +99,12 @@ class LLMTextEncoder(_BaseModule):
             return []
         if self.tokenizer is None:
             return texts
-        encoded = self.tokenizer(
+        encoded = dict(self.tokenizer(
             texts,
             padding=True,
             truncation=True,
             return_tensors="pt",
-        )
+        ))
         if device is not None:
             encoded = {key: value.to(device) for key, value in encoded.items()}
         return encoded
@@ -113,7 +114,7 @@ class LLMTextEncoder(_BaseModule):
             return self.backend(texts)
         if texts == []:
             return torch.zeros((0, self.output_dim), dtype=self.proj.weight.dtype, device=self.proj.weight.device)
-        encoded = texts if isinstance(texts, dict) else self.tokenize_texts(texts)
+        encoded = texts if isinstance(texts, Mapping) else self.tokenize_texts(texts)
         device = self.proj.weight.device
         encoded = {key: value.to(device) for key, value in encoded.items()}
         outputs = self.backend(**encoded)
