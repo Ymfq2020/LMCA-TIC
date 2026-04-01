@@ -626,12 +626,32 @@ class LMCATICTrainer:
         return tuple(values) if values else ("entity_type=UNKNOWN",)
 
     def _save_checkpoint(self, name: str) -> None:
-        torch.save(self._model_module().state_dict(), self.checkpoint_dir / name)
+        checkpoint = {
+            "model_state_dict": self._filtered_state_dict(self._model_module().state_dict()),
+            "config_name": self.config.name,
+        }
+        torch.save(checkpoint, self.checkpoint_dir / name)
 
     def _load_checkpoint(self, name: str) -> None:
         path = self.checkpoint_dir / name
         if path.exists():
-            self._model_module().load_state_dict(torch.load(path, map_location=self.device))
+            payload = torch.load(path, map_location=self.device)
+            state_dict = payload.get("model_state_dict", payload)
+            load_result = self._model_module().load_state_dict(state_dict, strict=False)
+            unexpected = list(load_result.unexpected_keys)
+            missing = list(load_result.missing_keys)
+            if unexpected:
+                self.logger.info(
+                    "checkpoint load ignored unexpected keys count=%s sample=%s",
+                    len(unexpected),
+                    unexpected[:10],
+                )
+            if missing:
+                self.logger.info(
+                    "checkpoint load missing keys count=%s sample=%s",
+                    len(missing),
+                    missing[:10],
+                )
 
     def _model_module(self):
         return self.model.module if self.enable_data_parallel else self.model
@@ -640,6 +660,19 @@ class LMCATICTrainer:
         if not self.use_amp:
             return nullcontext()
         return torch.amp.autocast("cuda", dtype=torch.float16)
+
+    def _filtered_state_dict(self, state_dict: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
+        filtered = {}
+        skip_fragments = (
+            ".absmax",
+            ".quant_map",
+            ".quant_state.",
+        )
+        for key, value in state_dict.items():
+            if any(fragment in key for fragment in skip_fragments):
+                continue
+            filtered[key] = value
+        return filtered
 
     def _log_runtime_diagnostics(self) -> None:
         self.logger.info(
