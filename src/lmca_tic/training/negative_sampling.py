@@ -69,31 +69,45 @@ class HardNegativeSampler:
     ) -> list[tuple[str, float]]:
         weighted: list[tuple[str, float]] = []
         for entity in filtered:
-            base_score = candidate_scores.get(entity, 0.0)
+            base_score = self._finite_or_default(candidate_scores.get(entity, 0.0))
             ontology_bonus = 0.0
             if self.scorer is not None:
-                ontology_bonus = self.scorer.score(subject_types, relation, candidate_types.get(entity, ()))
-            weighted.append((entity, base_score + ontology_bonus))
+                ontology_bonus = self._finite_or_default(
+                    self.scorer.score(subject_types, relation, candidate_types.get(entity, ()))
+                )
+            weighted.append((entity, self._finite_or_default(base_score + ontology_bonus)))
         return weighted
 
     def _hybrid_sample(self, weighted: list[tuple[str, float]]) -> list[str]:
         weighted.sort(key=lambda item: item[1], reverse=True)
-        hard_count = max(1, int(round(self.config.alpha * self.config.n_neg)))
+        hard_count = min(len(weighted), max(1, int(round(self.config.alpha * self.config.n_neg))))
         deterministic = [entity for entity, _ in weighted[:hard_count]]
         residual = weighted[hard_count:]
         probabilistic_count = max(self.config.n_neg - len(deterministic), 0)
         if probabilistic_count == 0 or not residual:
             return deterministic[: self.config.n_neg]
 
-        logits = [score / max(self.config.tau, 1e-6) for _, score in residual]
+        logits = [self._finite_or_default(score) / max(self.config.tau, 1e-6) for _, score in residual]
         max_logit = max(logits)
-        probs = [math.exp(logit - max_logit) for logit in logits]
-        norm = sum(probs) or 1.0
+        probs = [self._finite_or_default(math.exp(logit - max_logit)) for logit in logits]
+        norm = sum(probs)
+        if not math.isfinite(norm) or norm <= 0.0:
+            probs = [1.0] * len(residual)
+            norm = float(len(residual))
         probs = [value / norm for value in probs]
         sampled: list[str] = []
         pool = list(range(len(residual)))
         while pool and len(sampled) < probabilistic_count:
-            idx = random.choices(pool, weights=[probs[i] for i in pool], k=1)[0]
+            pool_weights = [self._finite_or_default(probs[i]) for i in pool]
+            weight_total = sum(pool_weights)
+            if not math.isfinite(weight_total) or weight_total <= 0.0:
+                idx = random.choice(pool)
+            else:
+                idx = random.choices(pool, weights=pool_weights, k=1)[0]
             sampled.append(residual[idx][0])
             pool.remove(idx)
         return deterministic + sampled
+
+    @staticmethod
+    def _finite_or_default(value: float, default: float = 0.0) -> float:
+        return value if math.isfinite(value) else default

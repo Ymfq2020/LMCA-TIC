@@ -34,3 +34,16 @@ def test_negative_sampler_supports_all_modes():
         )
         assert len(negatives) <= 2
         assert all(candidate != "gold" for candidate in negatives)
+
+
+def test_negative_sampler_tolerates_non_finite_weights():
+    sampler = build_sampler("ontology_weighted")
+    negatives = sampler._hybrid_sample(
+        [
+            ("o1", float("inf")),
+            ("o2", float("nan")),
+            ("o4", float("-inf")),
+        ]
+    )
+    assert len(negatives) <= 2
+    assert all(candidate in {"o1", "o2", "o4"} for candidate in negatives)
