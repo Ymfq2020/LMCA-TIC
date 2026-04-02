@@ -109,7 +109,9 @@ class LMCATICTrainer:
             self.model = nn.DataParallel(self.model)
         self.optimizer = AdamW(self._model_module().parameters(), lr=config.learning_rate)
         self.loss_fn = nn.BCEWithLogitsLoss()
-        self.scaler = torch.amp.GradScaler("cuda", enabled=self.use_amp)
+        self.amp_dtype = self._resolve_amp_dtype()
+        self.use_grad_scaler = bool(self.use_amp and self.amp_dtype == torch.float16)
+        self.scaler = torch.amp.GradScaler("cuda", enabled=self.use_grad_scaler)
         self.train_loader = self._build_dataloader(self.train_dataset, batch_size=config.micro_batch_size, shuffle=True)
         self.valid_loader = self._build_dataloader(self.valid_dataset, batch_size=config.eval_batch_size, shuffle=False)
         self.test_loader = self._build_dataloader(self.test_dataset, batch_size=config.eval_batch_size, shuffle=False)
@@ -175,7 +177,7 @@ class LMCATICTrainer:
                     outputs = self.model(batch)
                     loss = self._compute_loss(outputs, batch)
                     scaled_loss = loss / max(self.config.gradient_accumulation_steps, 1)
-                if self.use_amp:
+                if self.use_grad_scaler:
                     self.scaler.scale(scaled_loss).backward()
                 else:
                     scaled_loss.backward()
@@ -185,7 +187,7 @@ class LMCATICTrainer:
                     or batch_index == len(self.train_loader)
                 )
                 if should_step:
-                    if self.use_amp:
+                    if self.use_grad_scaler:
                         self.scaler.step(self.optimizer)
                         self.scaler.update()
                     else:
@@ -656,10 +658,30 @@ class LMCATICTrainer:
     def _model_module(self):
         return self.model.module if self.enable_data_parallel else self.model
 
+    def _resolve_amp_dtype(self):
+        if not self.use_amp:
+            return None
+        trainable_dtypes = self._trainable_parameter_dtypes()
+        bf16_supported = bool(
+            torch.cuda.is_available()
+            and hasattr(torch.cuda, "is_bf16_supported")
+            and torch.cuda.is_bf16_supported()
+        )
+        if bf16_supported and torch.bfloat16 in trainable_dtypes:
+            return torch.bfloat16
+        return torch.float16
+
+    def _trainable_parameter_dtypes(self) -> set[torch.dtype]:
+        dtypes: set[torch.dtype] = set()
+        for parameter in self._model_module().parameters():
+            if parameter.requires_grad and torch.is_floating_point(parameter):
+                dtypes.add(parameter.dtype)
+        return dtypes
+
     def _autocast(self):
         if not self.use_amp:
             return nullcontext()
-        return torch.amp.autocast("cuda", dtype=torch.float16)
+        return torch.amp.autocast("cuda", dtype=self.amp_dtype)
 
     def _filtered_state_dict(self, state_dict: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
         filtered = {}
@@ -676,11 +698,13 @@ class LMCATICTrainer:
 
     def _log_runtime_diagnostics(self) -> None:
         self.logger.info(
-            "runtime device=%s cuda_available=%s cuda_device_count=%s amp=%s data_parallel=%s",
+            "runtime device=%s cuda_available=%s cuda_device_count=%s amp=%s amp_dtype=%s grad_scaler=%s data_parallel=%s",
             self.device,
             torch.cuda.is_available(),
             torch.cuda.device_count() if torch.cuda.is_available() else 0,
             self.use_amp,
+            str(self.amp_dtype).replace("torch.", "") if self.amp_dtype is not None else "disabled",
+            self.use_grad_scaler,
             self.enable_data_parallel,
         )
         self.logger.info(
