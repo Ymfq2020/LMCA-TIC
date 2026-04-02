@@ -7,6 +7,10 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
+from _bootstrap import ensure_src_on_path
+
+ensure_src_on_path()
+
 from lmca_tic.utils.io import read_jsonl
 
 

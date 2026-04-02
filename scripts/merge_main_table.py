@@ -4,6 +4,10 @@ from __future__ import annotations
 
 import argparse
 
+from _bootstrap import ensure_src_on_path
+
+ensure_src_on_path()
+
 from lmca_tic.experiments.runner import merge_reference_baselines
 
 
