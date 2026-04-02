@@ -1,0 +1,61 @@
+# A10 单卡展示配置。
+# 假设从仓库根目录运行，并使用本地离线模型目录 models/Qwen2.5-0.5B-Instruct。
+name: icews14_demo_plus_qwen25_05b_a10
+dataset_name: ICEWS14-DEMO-PLUS
+raw_dir: data/local/icews14_demo_plus/raw
+processed_dir: data/processed/icews14_demo_plus
+bie_path: data/local/icews14_demo_plus/bie/entity_metadata.jsonl
+bie_ordered_keys: [entity_type, country, sector, city, region, role, alias, description]
+ontology_keys: [entity_type, country]
+delimiter: "\t"
+seed: 42
+num_epochs: 2
+micro_batch_size: 2
+eval_batch_size: 2
+gradient_accumulation_steps: 2
+num_workers: 0
+learning_rate: 0.0003
+warmup_ratio: 0.05
+early_stopping_patience: 2
+amp_enabled: true
+enable_data_parallel: false
+candidate_chunk_size: 16
+log_every_n_steps: 1
+output_dir: outputs/icews14_demo_plus_qwen25_05b_a10
+log_dir: logs/icews14_demo_plus_qwen25_05b_a10
+checkpoint_dir: checkpoints/icews14_demo_plus_qwen25_05b_a10
+baseline_reference_path: references/table3_2_reference.csv
+model:
+  llm_name: models/Qwen2.5-0.5B-Instruct
+  smoke_llm_name: distilbert-base-uncased
+  embedding_dim: 128
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  tcn_kernel_size: 2
+  tcn_dilations: [1, 2, 4]
+  tgn_neighbor_size: 5
+  tgn_time_window_days: 14
+  tgn_memory_dim: 128
+  tgn_time_decay_init: 0.1
+  fusion_hidden_dim: 64
+  use_llm: true
+  use_tcn: true
+  use_tgn: true
+  use_gate: true
+  use_gs: false
+  use_ni: true
+  use_sl: true
+  use_4bit: true
+negative_sampling:
+  mode: ontology_weighted
+  k_recall: 16
+  n_neg: 4
+  tau: 0.7
+  alpha: 0.5
+  faiss_enabled: false
+metadata:
+  purpose: demo_plus
+  runtime_target: A10-24GB
+  offline_mode: true
+  notes: "用于 2000/100/100 离线展示，不用于正式论文主实验。"
