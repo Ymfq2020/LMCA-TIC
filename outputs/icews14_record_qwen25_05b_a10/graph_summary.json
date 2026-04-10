@@ -1,0 +1,2035 @@
+{
+  "rules": [
+    {
+      "rule_id": "entity_type=Actor,country=UNKNOWN|Appeal for intelligence|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Actor,country=UNKNOWN|Consult|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Actor,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Actor,country=UNKNOWN|Make a visit|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Actor,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Actor,country=UNKNOWN|Make statement|entity_type=Person,country=United Kingdom",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Actor,country=UNKNOWN|Reject|entity_type=Person,country=UNKNOWN",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Organization,country=Iran|Make a visit|entity_type=Country,country=Iran",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Accede to demands for change in leadership|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consider policy option|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Company,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Country,country=France",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Country,country=Qatar",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Algeria",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Brazil",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=China",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 6,
+      "coverage": 0.02,
+      "rule_gain": 45.62334089446813
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=UNKNOWN",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=United States",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Location,country=United States",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Organization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Person,country=UNKNOWN",
+      "support": 33,
+      "coverage": 0.11,
+      "rule_gain": 252.47817086894065
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Person,country=United States",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Person,country=Usa",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Target,country=Argentina",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Target,country=Egypt",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Target,country=France",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Target,country=Italy",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Target,country=Qatar",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Consult|entity_type=Target,country=UNKNOWN",
+      "support": 5,
+      "coverage": 0.016666666666666666,
+      "rule_gain": 38.01103254407644
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Criticize or denounce|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Criticize or denounce|entity_type=Target,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Demand|entity_type=Organization,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Discuss by telephone|entity_type=Person,country=UNKNOWN",
+      "support": 4,
+      "coverage": 0.013333333333333334,
+      "rule_gain": 30.402106613852084
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in diplomatic cooperation|entity_type=Target,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in negotiation|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in negotiation|entity_type=GovernmentOrganization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in negotiation|entity_type=Location,country=United States",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in negotiation|entity_type=Organization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in negotiation|entity_type=Person,country=UNKNOWN",
+      "support": 6,
+      "coverage": 0.02,
+      "rule_gain": 45.62334089446813
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in negotiation|entity_type=Person,country=United States",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Engage in negotiation|entity_type=Target,country=Saudi Arabia",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to cooperate|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Organization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Company,country=Italy",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Country,country=China",
+      "support": 6,
+      "coverage": 0.02,
+      "rule_gain": 45.62334089446813
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Country,country=France",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=GovernmentOrganization,country=China",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Organization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN",
+      "support": 8,
+      "coverage": 0.02666666666666667,
+      "rule_gain": 60.85815090406686
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Italy",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Libya",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Saudi Arabia",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=UNKNOWN",
+      "support": 4,
+      "coverage": 0.013333333333333334,
+      "rule_gain": 30.402106613852084
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Express intent to settle dispute|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Halt negotiations|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Host a visit|entity_type=GovernmentOrganization,country=France",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Host a visit|entity_type=GovernmentOrganization,country=Italy",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Host a visit|entity_type=Location,country=United States",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Host a visit|entity_type=Person,country=UNKNOWN",
+      "support": 6,
+      "coverage": 0.02,
+      "rule_gain": 45.62334089446813
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Host a visit|entity_type=Person,country=United States",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Host a visit|entity_type=Target,country=Qatar",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Host a visit|entity_type=Target,country=UNKNOWN",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make a visit|entity_type=Country,country=China",
+      "support": 12,
+      "coverage": 0.04,
+      "rule_gain": 91.368870889768
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make a visit|entity_type=Country,country=France",
+      "support": 8,
+      "coverage": 0.02666666666666667,
+      "rule_gain": 60.85815090406686
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make a visit|entity_type=Organization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make a visit|entity_type=Person,country=UNKNOWN",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make a visit|entity_type=Target,country=UNKNOWN",
+      "support": 6,
+      "coverage": 0.02,
+      "rule_gain": 45.62334089446813
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make an appeal or request|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make an appeal or request|entity_type=Person,country=UNKNOWN",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make an appeal or request|entity_type=Target,country=Libya",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make an appeal or request|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make optimistic comment|entity_type=Country,country=Iraq",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make optimistic comment|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make optimistic comment|entity_type=Target,country=Egypt",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=Country,country=China",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 9,
+      "coverage": 0.03,
+      "rule_gain": 68.48067578207701
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=GovernmentOrganization,country=United States",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=Organization,country=Egypt",
+      "support": 11,
+      "coverage": 0.03666666666666667,
+      "rule_gain": 83.73602392524481
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=Organization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=Person,country=UNKNOWN",
+      "support": 4,
+      "coverage": 0.013333333333333334,
+      "rule_gain": 30.402106613852084
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=Target,country=Egypt",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Make statement|entity_type=Target,country=UNKNOWN",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Country,country=France",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Person,country=UNKNOWN",
+      "support": 4,
+      "coverage": 0.013333333333333334,
+      "rule_gain": 30.402106613852084
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Person,country=United States",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Praise or endorse|entity_type=GovernmentOrganization,country=Egypt",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Praise or endorse|entity_type=Organization,country=Egypt",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Praise or endorse|entity_type=Person,country=UNKNOWN",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=Person,country=China|Praise or endorse|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=Japan|Engage in negotiation|entity_type=Country,country=Japan",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=Japan|Make statement|entity_type=Country,country=Japan",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=Japan|Make statement|entity_type=GovernmentOrganization,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=Japan|Make statement|entity_type=Person,country=India",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=Japan|Make statement|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=Japan|Make statement|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=Japan|Praise or endorse|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Arrest, detain, or charge with legal action|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Consult|entity_type=GovernmentOrganization,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Consult|entity_type=Person,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Consult|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Consult|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Criticize or denounce|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Engage in diplomatic cooperation|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Engage in negotiation|entity_type=Target,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Make an appeal or request|entity_type=GovernmentOrganization,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Sign formal agreement|entity_type=Target,country=UNKNOWN",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=Person,country=UNKNOWN|Use conventional military force|entity_type=Person,country=UNKNOWN",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse|entity_type=Person,country=UNKNOWN",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse|entity_type=Target,country=India",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse of crime, corruption|entity_type=Target,country=India",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Appeal to engage in or accept mediation|entity_type=Person,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Consult|entity_type=Person,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Consult|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Criticize or denounce|entity_type=Target,country=India",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Defend verbally|entity_type=Person,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Demand|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Engage in symbolic act|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Expel or deport individuals|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to provide humanitarian aid|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to provide material aid|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Make an appeal or request|entity_type=Person,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Make an appeal or request|entity_type=Target,country=India",
+      "support": 6,
+      "coverage": 0.02,
+      "rule_gain": 45.62334089446813
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Person,country=India",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN",
+      "support": 3,
+      "coverage": 0.01,
+      "rule_gain": 22.79655169416219
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=PoliticalOrganization,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Target,country=India",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Praise or endorse|entity_type=Target,country=India",
+      "support": 2,
+      "coverage": 0.006666666666666667,
+      "rule_gain": 15.194356447085738
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Rally opposition against|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Reduce relations|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Reject proposal to meet, discuss, or negotiate|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Threaten|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    },
+    {
+      "rule_id": "entity_type=PoliticalOrganization,country=UNKNOWN|Use conventional military force|entity_type=Target,country=India",
+      "support": 1,
+      "coverage": 0.0033333333333333335,
+      "rule_gain": 7.5955096101388335
+    }
+  ],
+  "coverage": {
+    "Use conventional military force": 0.006666666666666667,
+    "Consult": 0.25666666666666665,
+    "Make statement": 0.16666666666666666,
+    "Host a visit": 0.05,
+    "Praise or endorse": 0.03333333333333333,
+    "Defend verbally": 0.0033333333333333335,
+    "Express intent to meet or negotiate": 0.10333333333333333,
+    "Reduce relations": 0.0033333333333333335,
+    "Engage in negotiation": 0.05,
+    "Engage in diplomatic cooperation": 0.006666666666666667,
+    "Make an appeal or request": 0.04666666666666667,
+    "Accuse of crime, corruption": 0.006666666666666667,
+    "Rally opposition against": 0.0033333333333333335,
+    "Demand": 0.006666666666666667,
+    "Arrest, detain, or charge with legal action": 0.0033333333333333335,
+    "Criticize or denounce": 0.02,
+    "Accede to demands for change in leadership": 0.0033333333333333335,
+    "Make a visit": 0.10333333333333333,
+    "Accuse": 0.013333333333333334,
+    "Sign formal agreement": 0.006666666666666667,
+    "Make optimistic comment": 0.013333333333333334,
+    "Discuss by telephone": 0.013333333333333334,
+    "Meet at a 'third' location": 0.02,
+    "Express intent to engage in diplomatic cooperation (such as policy support)": 0.013333333333333334,
+    "Express intent to settle dispute": 0.0033333333333333335,
+    "Halt negotiations": 0.0033333333333333335,
+    "Expel or deport individuals": 0.0033333333333333335,
+    "Reject proposal to meet, discuss, or negotiate": 0.0033333333333333335,
+    "Reject": 0.006666666666666667,
+    "Express intent to provide material aid": 0.0033333333333333335,
+    "Appeal for intelligence": 0.0033333333333333335,
+    "Threaten": 0.0033333333333333335,
+    "Consider policy option": 0.0033333333333333335,
+    "Engage in symbolic act": 0.0033333333333333335,
+    "Express intent to cooperate": 0.0033333333333333335,
+    "Express intent to provide humanitarian aid": 0.0033333333333333335,
+    "Appeal to engage in or accept mediation": 0.0033333333333333335
+  },
+  "type_constraints": {
+    "Use conventional military force": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Consult": {
+      "src": [
+        "country=China",
+        "country=UNKNOWN",
+        "entity_type=Actor",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=Algeria",
+        "country=Argentina",
+        "country=Brazil",
+        "country=China",
+        "country=Egypt",
+        "country=France",
+        "country=India",
+        "country=Italy",
+        "country=Qatar",
+        "country=UNKNOWN",
+        "country=United States",
+        "country=Usa",
+        "entity_type=Company",
+        "entity_type=Country",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Location",
+        "entity_type=Organization",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Make statement": {
+      "src": [
+        "country=China",
+        "country=Japan",
+        "country=UNKNOWN",
+        "entity_type=Actor",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=China",
+        "country=Egypt",
+        "country=India",
+        "country=Japan",
+        "country=UNKNOWN",
+        "country=United Kingdom",
+        "country=United States",
+        "entity_type=Country",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Organization",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization",
+        "entity_type=Target"
+      ]
+    },
+    "Host a visit": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=France",
+        "country=Italy",
+        "country=Qatar",
+        "country=UNKNOWN",
+        "country=United States",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Location",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Praise or endorse": {
+      "src": [
+        "country=China",
+        "country=Japan",
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=India",
+        "country=UNKNOWN",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Organization",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Defend verbally": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Person"
+      ]
+    },
+    "Express intent to meet or negotiate": {
+      "src": [
+        "country=China",
+        "country=UNKNOWN",
+        "entity_type=Actor",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=China",
+        "country=Egypt",
+        "country=France",
+        "country=India",
+        "country=Italy",
+        "country=Libya",
+        "country=Saudi Arabia",
+        "country=UNKNOWN",
+        "entity_type=Company",
+        "entity_type=Country",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Organization",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Reduce relations": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Engage in negotiation": {
+      "src": [
+        "country=China",
+        "country=Japan",
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=Japan",
+        "country=Saudi Arabia",
+        "country=UNKNOWN",
+        "country=United States",
+        "entity_type=Country",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Location",
+        "entity_type=Organization",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Engage in diplomatic cooperation": {
+      "src": [
+        "country=China",
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Make an appeal or request": {
+      "src": [
+        "country=China",
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=India",
+        "country=Libya",
+        "country=UNKNOWN",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Accuse of crime, corruption": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Rally opposition against": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Demand": {
+      "src": [
+        "country=China",
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=India",
+        "entity_type=Organization",
+        "entity_type=Target"
+      ]
+    },
+    "Arrest, detain, or charge with legal action": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Criticize or denounce": {
+      "src": [
+        "country=China",
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=India",
+        "country=UNKNOWN",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Accede to demands for change in leadership": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=Egypt",
+        "entity_type=GovernmentOrganization"
+      ]
+    },
+    "Make a visit": {
+      "src": [
+        "country=China",
+        "country=Iran",
+        "country=UNKNOWN",
+        "entity_type=Actor",
+        "entity_type=Organization",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=China",
+        "country=France",
+        "country=Iran",
+        "country=UNKNOWN",
+        "entity_type=Country",
+        "entity_type=Organization",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Accuse": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "country=UNKNOWN",
+        "entity_type=Person",
+        "entity_type=Target"
+      ]
+    },
+    "Sign formal agreement": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Target"
+      ]
+    },
+    "Make optimistic comment": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=Iraq",
+        "entity_type=Country",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Target"
+      ]
+    },
+    "Discuss by telephone": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ]
+    },
+    "Meet at a 'third' location": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=France",
+        "country=UNKNOWN",
+        "country=United States",
+        "entity_type=Country",
+        "entity_type=Person"
+      ]
+    },
+    "Express intent to engage in diplomatic cooperation (such as policy support)": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=Egypt",
+        "country=UNKNOWN",
+        "entity_type=GovernmentOrganization",
+        "entity_type=Organization",
+        "entity_type=Person"
+      ]
+    },
+    "Express intent to settle dispute": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Target"
+      ]
+    },
+    "Halt negotiations": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Target"
+      ]
+    },
+    "Expel or deport individuals": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Reject proposal to meet, discuss, or negotiate": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Reject": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=Actor"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ]
+    },
+    "Express intent to provide material aid": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Appeal for intelligence": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=Actor"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Target"
+      ]
+    },
+    "Threaten": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Consider policy option": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ]
+    },
+    "Engage in symbolic act": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Express intent to cooperate": {
+      "src": [
+        "country=China",
+        "entity_type=Person"
+      ],
+      "dst": [
+        "country=UNKNOWN",
+        "entity_type=Person"
+      ]
+    },
+    "Express intent to provide humanitarian aid": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Target"
+      ]
+    },
+    "Appeal to engage in or accept mediation": {
+      "src": [
+        "country=UNKNOWN",
+        "entity_type=PoliticalOrganization"
+      ],
+      "dst": [
+        "country=India",
+        "entity_type=Person"
+      ]
+    }
+  },
+  "rule_gain": {
+    "entity_type=Actor,country=UNKNOWN|Appeal for intelligence|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Consult|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Make a visit|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Make statement|entity_type=Person,country=United Kingdom": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Reject|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Organization,country=Iran|Make a visit|entity_type=Country,country=Iran": 7.5955096101388335,
+    "entity_type=Person,country=China|Accede to demands for change in leadership|entity_type=GovernmentOrganization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Consider policy option|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Company,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Country,country=France": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=Country,country=Qatar": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Algeria": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Brazil": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=China": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Egypt": 45.62334089446813,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=United States": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Location,country=United States": 22.79655169416219,
+    "entity_type=Person,country=China|Consult|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Person,country=UNKNOWN": 252.47817086894065,
+    "entity_type=Person,country=China|Consult|entity_type=Person,country=United States": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=Person,country=Usa": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Argentina": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Italy": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Qatar": 22.79655169416219,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=UNKNOWN": 38.01103254407644,
+    "entity_type=Person,country=China|Criticize or denounce|entity_type=GovernmentOrganization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Criticize or denounce|entity_type=Target,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Demand|entity_type=Organization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Discuss by telephone|entity_type=Person,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person,country=China|Engage in diplomatic cooperation|entity_type=Target,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=GovernmentOrganization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Location,country=United States": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Person,country=UNKNOWN": 45.62334089446813,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Person,country=United States": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Target,country=Saudi Arabia": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to cooperate|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Company,country=Italy": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Country,country=China": 45.62334089446813,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Country,country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=GovernmentOrganization,country=China": 22.79655169416219,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN": 60.85815090406686,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Italy": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Libya": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Saudi Arabia": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person,country=China|Express intent to settle dispute|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Halt negotiations|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=GovernmentOrganization,country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=GovernmentOrganization,country=Italy": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=Location,country=United States": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=Person,country=UNKNOWN": 45.62334089446813,
+    "entity_type=Person,country=China|Host a visit|entity_type=Person,country=United States": 15.194356447085738,
+    "entity_type=Person,country=China|Host a visit|entity_type=Target,country=Qatar": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=Target,country=UNKNOWN": 22.79655169416219,
+    "entity_type=Person,country=China|Make a visit|entity_type=Country,country=China": 91.368870889768,
+    "entity_type=Person,country=China|Make a visit|entity_type=Country,country=France": 60.85815090406686,
+    "entity_type=Person,country=China|Make a visit|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Make a visit|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person,country=China|Make a visit|entity_type=Target,country=UNKNOWN": 45.62334089446813,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=Target,country=Libya": 7.5955096101388335,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Make optimistic comment|entity_type=Country,country=Iraq": 7.5955096101388335,
+    "entity_type=Person,country=China|Make optimistic comment|entity_type=GovernmentOrganization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Make optimistic comment|entity_type=Target,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Make statement|entity_type=Country,country=China": 7.5955096101388335,
+    "entity_type=Person,country=China|Make statement|entity_type=GovernmentOrganization,country=Egypt": 68.48067578207701,
+    "entity_type=Person,country=China|Make statement|entity_type=GovernmentOrganization,country=United States": 15.194356447085738,
+    "entity_type=Person,country=China|Make statement|entity_type=Organization,country=Egypt": 83.73602392524481,
+    "entity_type=Person,country=China|Make statement|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Make statement|entity_type=Person,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person,country=China|Make statement|entity_type=Target,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Make statement|entity_type=Target,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Country,country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Person,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Person,country=United States": 7.5955096101388335,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=Organization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=Person,country=UNKNOWN": 22.79655169416219,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Engage in negotiation|entity_type=Country,country=Japan": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Country,country=Japan": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Make statement|entity_type=GovernmentOrganization,country=India": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Person,country=India": 15.194356447085738,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Praise or endorse|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Arrest, detain, or charge with legal action|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=GovernmentOrganization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Criticize or denounce|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Engage in diplomatic cooperation|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Engage in negotiation|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Make an appeal or request|entity_type=GovernmentOrganization,country=India": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Sign formal agreement|entity_type=Target,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person,country=UNKNOWN|Use conventional military force|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse of crime, corruption|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Appeal to engage in or accept mediation|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Consult|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Consult|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Criticize or denounce|entity_type=Target,country=India": 22.79655169416219,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Defend verbally|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Demand|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Engage in symbolic act|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Expel or deport individuals|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to provide humanitarian aid|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to provide material aid|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make an appeal or request|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make an appeal or request|entity_type=Target,country=India": 45.62334089446813,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Person,country=India": 22.79655169416219,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN": 22.79655169416219,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=PoliticalOrganization,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Praise or endorse|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Rally opposition against|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Reduce relations|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Reject proposal to meet, discuss, or negotiate|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Threaten|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Use conventional military force|entity_type=Target,country=India": 7.5955096101388335
+  },
+  "negative_error_weight": {
+    "entity_type=Actor,country=UNKNOWN|Appeal for intelligence|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor|Appeal for intelligence|entity_type=Target": 7.5955096101388335,
+    "entity_type=Actor|Appeal for intelligence|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Appeal for intelligence|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Appeal for intelligence|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Consult|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor|Consult|entity_type=Target": 7.5955096101388335,
+    "entity_type=Actor|Consult|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Consult|entity_type=Target": 30.382038440555334,
+    "country=UNKNOWN|Consult|country=UNKNOWN": 22.7865288304165,
+    "entity_type=Actor,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor|Express intent to meet or negotiate|entity_type=Person": 7.5955096101388335,
+    "entity_type=Actor|Express intent to meet or negotiate|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Express intent to meet or negotiate|entity_type=Person": 15.191019220277667,
+    "country=UNKNOWN|Express intent to meet or negotiate|country=UNKNOWN": 15.191019220277667,
+    "entity_type=Actor,country=UNKNOWN|Make a visit|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor|Make a visit|entity_type=Target": 7.5955096101388335,
+    "entity_type=Actor|Make a visit|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Make a visit|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Make a visit|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Actor|Make statement|entity_type=Person": 15.191019220277667,
+    "entity_type=Actor|Make statement|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Make statement|entity_type=Person": 68.37963221874088,
+    "country=UNKNOWN|Make statement|country=UNKNOWN": 37.98757091443986,
+    "entity_type=Actor,country=UNKNOWN|Make statement|entity_type=Person,country=United Kingdom": 7.5955096101388335,
+    "entity_type=Actor|Make statement|country=United Kingdom": 7.5955096101388335,
+    "country=UNKNOWN|Make statement|country=United Kingdom": 7.5955096101388335,
+    "entity_type=Actor,country=UNKNOWN|Reject|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Actor|Reject|entity_type=Person": 15.194356447085738,
+    "entity_type=Actor|Reject|country=UNKNOWN": 15.194356447085738,
+    "country=UNKNOWN|Reject|entity_type=Person": 15.194356447085738,
+    "country=UNKNOWN|Reject|country=UNKNOWN": 15.194356447085738,
+    "entity_type=Organization,country=Iran|Make a visit|entity_type=Country,country=Iran": 7.5955096101388335,
+    "entity_type=Organization|Make a visit|entity_type=Country": 7.5955096101388335,
+    "entity_type=Organization|Make a visit|country=Iran": 7.5955096101388335,
+    "country=Iran|Make a visit|entity_type=Country": 7.5955096101388335,
+    "country=Iran|Make a visit|country=Iran": 7.5955096101388335,
+    "entity_type=Person,country=China|Accede to demands for change in leadership|entity_type=GovernmentOrganization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Accede to demands for change in leadership|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "entity_type=Person|Accede to demands for change in leadership|country=Egypt": 7.5955096101388335,
+    "country=China|Accede to demands for change in leadership|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "country=China|Accede to demands for change in leadership|country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Consider policy option|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Consider policy option|entity_type=Person": 7.5955096101388335,
+    "entity_type=Person|Consider policy option|country=UNKNOWN": 7.5955096101388335,
+    "country=China|Consider policy option|entity_type=Person": 7.5955096101388335,
+    "country=China|Consider policy option|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Company,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Consult|entity_type=Company": 7.5955096101388335,
+    "entity_type=Person|Consult|country=Egypt": 68.4132069516927,
+    "country=China|Consult|entity_type=Company": 7.5955096101388335,
+    "country=China|Consult|country=Egypt": 68.4132069516927,
+    "entity_type=Person,country=China|Consult|entity_type=Country,country=France": 15.194356447085738,
+    "entity_type=Person|Consult|entity_type=Country": 22.78986605722457,
+    "entity_type=Person|Consult|country=France": 22.78986605722457,
+    "country=China|Consult|entity_type=Country": 22.78986605722457,
+    "country=China|Consult|country=France": 22.78986605722457,
+    "entity_type=Person,country=China|Consult|entity_type=Country,country=Qatar": 7.5955096101388335,
+    "entity_type=Person|Consult|country=Qatar": 30.392061304301023,
+    "country=China|Consult|country=Qatar": 30.392061304301023,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Algeria": 7.5955096101388335,
+    "entity_type=Person|Consult|entity_type=GovernmentOrganization": 98.79524539224803,
+    "entity_type=Person|Consult|country=Algeria": 7.5955096101388335,
+    "country=China|Consult|entity_type=GovernmentOrganization": 91.1997357821092,
+    "country=China|Consult|country=Algeria": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Brazil": 7.5955096101388335,
+    "entity_type=Person|Consult|country=Brazil": 7.5955096101388335,
+    "country=China|Consult|country=Brazil": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=China": 7.5955096101388335,
+    "entity_type=Person|Consult|country=China": 7.5955096101388335,
+    "country=China|Consult|country=China": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=Egypt": 45.62334089446813,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person|Consult|country=UNKNOWN": 328.47008869051933,
+    "country=China|Consult|country=UNKNOWN": 313.27906947024167,
+    "entity_type=Person,country=China|Consult|entity_type=GovernmentOrganization,country=United States": 7.5955096101388335,
+    "entity_type=Person|Consult|country=United States": 45.58641775138676,
+    "country=China|Consult|country=United States": 45.58641775138676,
+    "entity_type=Person,country=China|Consult|entity_type=Location,country=United States": 22.79655169416219,
+    "entity_type=Person|Consult|entity_type=Location": 22.79655169416219,
+    "country=China|Consult|entity_type=Location": 22.79655169416219,
+    "entity_type=Person,country=China|Consult|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Consult|entity_type=Organization": 7.5955096101388335,
+    "country=China|Consult|entity_type=Organization": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Person,country=UNKNOWN": 252.47817086894065,
+    "entity_type=Person|Consult|entity_type=Person": 282.86354653630406,
+    "country=China|Consult|entity_type=Person": 275.2680369261652,
+    "entity_type=Person,country=China|Consult|entity_type=Person,country=United States": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=Person,country=Usa": 7.5955096101388335,
+    "entity_type=Person|Consult|country=Usa": 7.5955096101388335,
+    "country=China|Consult|country=Usa": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Argentina": 7.5955096101388335,
+    "entity_type=Person|Consult|entity_type=Target": 121.57833557296544,
+    "entity_type=Person|Consult|country=Argentina": 7.5955096101388335,
+    "country=China|Consult|entity_type=Target": 106.38731635268778,
+    "country=China|Consult|country=Argentina": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Italy": 15.194356447085738,
+    "entity_type=Person|Consult|country=Italy": 15.194356447085738,
+    "country=China|Consult|country=Italy": 15.194356447085738,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=Qatar": 22.79655169416219,
+    "entity_type=Person,country=China|Consult|entity_type=Target,country=UNKNOWN": 38.01103254407644,
+    "entity_type=Person,country=China|Criticize or denounce|entity_type=GovernmentOrganization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Criticize or denounce|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "entity_type=Person|Criticize or denounce|country=Egypt": 15.191019220277667,
+    "country=China|Criticize or denounce|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "country=China|Criticize or denounce|country=Egypt": 15.191019220277667,
+    "entity_type=Person,country=China|Criticize or denounce|entity_type=Target,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Criticize or denounce|entity_type=Target": 7.5955096101388335,
+    "country=China|Criticize or denounce|entity_type=Target": 7.5955096101388335,
+    "entity_type=Person,country=China|Demand|entity_type=Organization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Demand|entity_type=Organization": 7.5955096101388335,
+    "entity_type=Person|Demand|country=Egypt": 7.5955096101388335,
+    "country=China|Demand|entity_type=Organization": 7.5955096101388335,
+    "country=China|Demand|country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Discuss by telephone|entity_type=Person,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person|Discuss by telephone|entity_type=Person": 30.402106613852084,
+    "entity_type=Person|Discuss by telephone|country=UNKNOWN": 30.402106613852084,
+    "country=China|Discuss by telephone|entity_type=Person": 30.402106613852084,
+    "country=China|Discuss by telephone|country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person,country=China|Engage in diplomatic cooperation|entity_type=Target,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Engage in diplomatic cooperation|entity_type=Target": 7.5955096101388335,
+    "entity_type=Person|Engage in diplomatic cooperation|country=Egypt": 7.5955096101388335,
+    "country=China|Engage in diplomatic cooperation|entity_type=Target": 7.5955096101388335,
+    "country=China|Engage in diplomatic cooperation|country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person|Engage in negotiation|entity_type=GovernmentOrganization": 22.78986605722457,
+    "entity_type=Person|Engage in negotiation|country=Egypt": 15.194356447085738,
+    "country=China|Engage in negotiation|entity_type=GovernmentOrganization": 22.78986605722457,
+    "country=China|Engage in negotiation|country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=GovernmentOrganization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Engage in negotiation|country=UNKNOWN": 68.40986972488463,
+    "country=China|Engage in negotiation|country=UNKNOWN": 60.814360114745796,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Location,country=United States": 7.5955096101388335,
+    "entity_type=Person|Engage in negotiation|entity_type=Location": 7.5955096101388335,
+    "entity_type=Person|Engage in negotiation|country=United States": 15.191019220277667,
+    "country=China|Engage in negotiation|entity_type=Location": 7.5955096101388335,
+    "country=China|Engage in negotiation|country=United States": 15.191019220277667,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Engage in negotiation|entity_type=Organization": 7.5955096101388335,
+    "country=China|Engage in negotiation|entity_type=Organization": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Person,country=UNKNOWN": 45.62334089446813,
+    "entity_type=Person|Engage in negotiation|entity_type=Person": 53.21885050460696,
+    "country=China|Engage in negotiation|entity_type=Person": 53.21885050460696,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Person,country=United States": 7.5955096101388335,
+    "entity_type=Person,country=China|Engage in negotiation|entity_type=Target,country=Saudi Arabia": 7.5955096101388335,
+    "entity_type=Person|Engage in negotiation|entity_type=Target": 15.191019220277667,
+    "entity_type=Person|Engage in negotiation|country=Saudi Arabia": 7.5955096101388335,
+    "country=China|Engage in negotiation|entity_type=Target": 7.5955096101388335,
+    "country=China|Engage in negotiation|country=Saudi Arabia": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to cooperate|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Express intent to cooperate|entity_type=Person": 7.5955096101388335,
+    "entity_type=Person|Express intent to cooperate|country=UNKNOWN": 7.5955096101388335,
+    "country=China|Express intent to cooperate|entity_type=Person": 7.5955096101388335,
+    "country=China|Express intent to cooperate|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=GovernmentOrganization": 15.194356447085738,
+    "entity_type=Person|Express intent to engage in diplomatic cooperation (such as policy support)|country=Egypt": 15.194356447085738,
+    "country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=GovernmentOrganization": 15.194356447085738,
+    "country=China|Express intent to engage in diplomatic cooperation (such as policy support)|country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Organization": 7.5955096101388335,
+    "entity_type=Person|Express intent to engage in diplomatic cooperation (such as policy support)|country=UNKNOWN": 15.191019220277667,
+    "country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Organization": 7.5955096101388335,
+    "country=China|Express intent to engage in diplomatic cooperation (such as policy support)|country=UNKNOWN": 15.191019220277667,
+    "entity_type=Person,country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Person": 7.5955096101388335,
+    "country=China|Express intent to engage in diplomatic cooperation (such as policy support)|entity_type=Person": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Company,country=Italy": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|entity_type=Company": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|country=Italy": 15.191019220277667,
+    "country=China|Express intent to meet or negotiate|entity_type=Company": 7.5955096101388335,
+    "country=China|Express intent to meet or negotiate|country=Italy": 15.191019220277667,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Country,country=China": 45.62334089446813,
+    "entity_type=Person|Express intent to meet or negotiate|entity_type=Country": 53.21885050460696,
+    "entity_type=Person|Express intent to meet or negotiate|country=China": 68.41989258863032,
+    "country=China|Express intent to meet or negotiate|entity_type=Country": 53.21885050460696,
+    "country=China|Express intent to meet or negotiate|country=China": 68.41989258863032,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Country,country=France": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|country=France": 7.5955096101388335,
+    "country=China|Express intent to meet or negotiate|country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=GovernmentOrganization,country=China": 22.79655169416219,
+    "entity_type=Person|Express intent to meet or negotiate|entity_type=GovernmentOrganization": 22.79655169416219,
+    "country=China|Express intent to meet or negotiate|entity_type=GovernmentOrganization": 22.79655169416219,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|entity_type=Organization": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|country=UNKNOWN": 106.45127673819661,
+    "country=China|Express intent to meet or negotiate|entity_type=Organization": 7.5955096101388335,
+    "country=China|Express intent to meet or negotiate|country=UNKNOWN": 98.85576712805778,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN": 60.85815090406686,
+    "entity_type=Person|Express intent to meet or negotiate|entity_type=Person": 68.4536605142057,
+    "country=China|Express intent to meet or negotiate|entity_type=Person": 60.85815090406686,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|entity_type=Target": 60.78414505440742,
+    "entity_type=Person|Express intent to meet or negotiate|country=Egypt": 7.5955096101388335,
+    "country=China|Express intent to meet or negotiate|entity_type=Target": 60.78414505440742,
+    "country=China|Express intent to meet or negotiate|country=Egypt": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Italy": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Libya": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|country=Libya": 7.5955096101388335,
+    "country=China|Express intent to meet or negotiate|country=Libya": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=Saudi Arabia": 7.5955096101388335,
+    "entity_type=Person|Express intent to meet or negotiate|country=Saudi Arabia": 7.5955096101388335,
+    "country=China|Express intent to meet or negotiate|country=Saudi Arabia": 7.5955096101388335,
+    "entity_type=Person,country=China|Express intent to meet or negotiate|entity_type=Target,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person,country=China|Express intent to settle dispute|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Express intent to settle dispute|entity_type=Target": 7.5955096101388335,
+    "entity_type=Person|Express intent to settle dispute|country=UNKNOWN": 7.5955096101388335,
+    "country=China|Express intent to settle dispute|entity_type=Target": 7.5955096101388335,
+    "country=China|Express intent to settle dispute|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Halt negotiations|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Halt negotiations|entity_type=Target": 7.5955096101388335,
+    "entity_type=Person|Halt negotiations|country=UNKNOWN": 7.5955096101388335,
+    "country=China|Halt negotiations|entity_type=Target": 7.5955096101388335,
+    "country=China|Halt negotiations|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=GovernmentOrganization,country=France": 7.5955096101388335,
+    "entity_type=Person|Host a visit|entity_type=GovernmentOrganization": 15.191019220277667,
+    "entity_type=Person|Host a visit|country=France": 7.5955096101388335,
+    "country=China|Host a visit|entity_type=GovernmentOrganization": 15.191019220277667,
+    "country=China|Host a visit|country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=GovernmentOrganization,country=Italy": 7.5955096101388335,
+    "entity_type=Person|Host a visit|country=Italy": 7.5955096101388335,
+    "country=China|Host a visit|country=Italy": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=Location,country=United States": 7.5955096101388335,
+    "entity_type=Person|Host a visit|entity_type=Location": 7.5955096101388335,
+    "entity_type=Person|Host a visit|country=United States": 22.78986605722457,
+    "country=China|Host a visit|entity_type=Location": 7.5955096101388335,
+    "country=China|Host a visit|country=United States": 22.78986605722457,
+    "entity_type=Person,country=China|Host a visit|entity_type=Person,country=UNKNOWN": 45.62334089446813,
+    "entity_type=Person|Host a visit|entity_type=Person": 60.81769734155387,
+    "entity_type=Person|Host a visit|country=UNKNOWN": 68.41989258863032,
+    "country=China|Host a visit|entity_type=Person": 60.81769734155387,
+    "country=China|Host a visit|country=UNKNOWN": 68.41989258863032,
+    "entity_type=Person,country=China|Host a visit|entity_type=Person,country=United States": 15.194356447085738,
+    "entity_type=Person,country=China|Host a visit|entity_type=Target,country=Qatar": 7.5955096101388335,
+    "entity_type=Person|Host a visit|entity_type=Target": 30.392061304301023,
+    "entity_type=Person|Host a visit|country=Qatar": 7.5955096101388335,
+    "country=China|Host a visit|entity_type=Target": 30.392061304301023,
+    "country=China|Host a visit|country=Qatar": 7.5955096101388335,
+    "entity_type=Person,country=China|Host a visit|entity_type=Target,country=UNKNOWN": 22.79655169416219,
+    "entity_type=Person,country=China|Make a visit|entity_type=Country,country=China": 91.368870889768,
+    "entity_type=Person|Make a visit|entity_type=Country": 152.22702179383487,
+    "entity_type=Person|Make a visit|country=China": 91.368870889768,
+    "country=China|Make a visit|entity_type=Country": 152.22702179383487,
+    "country=China|Make a visit|country=China": 91.368870889768,
+    "entity_type=Person,country=China|Make a visit|entity_type=Country,country=France": 60.85815090406686,
+    "entity_type=Person|Make a visit|country=France": 60.85815090406686,
+    "country=China|Make a visit|country=France": 60.85815090406686,
+    "entity_type=Person,country=China|Make a visit|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Make a visit|entity_type=Organization": 7.5955096101388335,
+    "entity_type=Person|Make a visit|country=UNKNOWN": 68.4132069516927,
+    "country=China|Make a visit|entity_type=Organization": 7.5955096101388335,
+    "country=China|Make a visit|country=UNKNOWN": 68.4132069516927,
+    "entity_type=Person,country=China|Make a visit|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person|Make a visit|entity_type=Person": 15.194356447085738,
+    "country=China|Make a visit|entity_type=Person": 15.194356447085738,
+    "entity_type=Person,country=China|Make a visit|entity_type=Target,country=UNKNOWN": 45.62334089446813,
+    "entity_type=Person|Make a visit|entity_type=Target": 45.62334089446813,
+    "country=China|Make a visit|entity_type=Target": 45.62334089446813,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person|Make an appeal or request|entity_type=GovernmentOrganization": 22.78986605722457,
+    "entity_type=Person|Make an appeal or request|country=Egypt": 15.194356447085738,
+    "country=China|Make an appeal or request|entity_type=GovernmentOrganization": 15.194356447085738,
+    "country=China|Make an appeal or request|country=Egypt": 15.194356447085738,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person|Make an appeal or request|entity_type=Person": 15.194356447085738,
+    "entity_type=Person|Make an appeal or request|country=UNKNOWN": 22.78986605722457,
+    "country=China|Make an appeal or request|entity_type=Person": 15.194356447085738,
+    "country=China|Make an appeal or request|country=UNKNOWN": 22.78986605722457,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=Target,country=Libya": 7.5955096101388335,
+    "entity_type=Person|Make an appeal or request|entity_type=Target": 15.191019220277667,
+    "entity_type=Person|Make an appeal or request|country=Libya": 7.5955096101388335,
+    "country=China|Make an appeal or request|entity_type=Target": 15.191019220277667,
+    "country=China|Make an appeal or request|country=Libya": 7.5955096101388335,
+    "entity_type=Person,country=China|Make an appeal or request|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=China|Make optimistic comment|entity_type=Country,country=Iraq": 7.5955096101388335,
+    "entity_type=Person|Make optimistic comment|entity_type=Country": 7.5955096101388335,
+    "entity_type=Person|Make optimistic comment|country=Iraq": 7.5955096101388335,
+    "country=China|Make optimistic comment|entity_type=Country": 7.5955096101388335,
+    "country=China|Make optimistic comment|country=Iraq": 7.5955096101388335,
+    "entity_type=Person,country=China|Make optimistic comment|entity_type=GovernmentOrganization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Make optimistic comment|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "entity_type=Person|Make optimistic comment|country=Egypt": 22.78986605722457,
+    "country=China|Make optimistic comment|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "country=China|Make optimistic comment|country=Egypt": 22.78986605722457,
+    "entity_type=Person,country=China|Make optimistic comment|entity_type=Target,country=Egypt": 15.194356447085738,
+    "entity_type=Person|Make optimistic comment|entity_type=Target": 15.194356447085738,
+    "country=China|Make optimistic comment|entity_type=Target": 15.194356447085738,
+    "entity_type=Person,country=China|Make statement|entity_type=Country,country=China": 7.5955096101388335,
+    "entity_type=Person|Make statement|entity_type=Country": 15.191019220277667,
+    "entity_type=Person|Make statement|country=China": 7.5955096101388335,
+    "country=China|Make statement|entity_type=Country": 7.5955096101388335,
+    "country=China|Make statement|country=China": 7.5955096101388335,
+    "entity_type=Person,country=China|Make statement|entity_type=GovernmentOrganization,country=Egypt": 68.48067578207701,
+    "entity_type=Person|Make statement|entity_type=GovernmentOrganization": 91.27054183930159,
+    "entity_type=Person|Make statement|country=Egypt": 167.41105615440756,
+    "country=China|Make statement|entity_type=GovernmentOrganization": 83.67503222916275,
+    "country=China|Make statement|country=Egypt": 167.41105615440756,
+    "entity_type=Person,country=China|Make statement|entity_type=GovernmentOrganization,country=United States": 15.194356447085738,
+    "entity_type=Person|Make statement|country=United States": 15.194356447085738,
+    "country=China|Make statement|country=United States": 15.194356447085738,
+    "entity_type=Person,country=China|Make statement|entity_type=Organization,country=Egypt": 83.73602392524481,
+    "entity_type=Person|Make statement|entity_type=Organization": 91.33153353538364,
+    "country=China|Make statement|entity_type=Organization": 91.33153353538364,
+    "entity_type=Person,country=China|Make statement|entity_type=Organization,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Make statement|country=UNKNOWN": 75.97850150149316,
+    "country=China|Make statement|country=UNKNOWN": 53.191972671076655,
+    "entity_type=Person,country=China|Make statement|entity_type=Person,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person|Make statement|entity_type=Person": 60.78748228121549,
+    "country=China|Make statement|entity_type=Person": 30.402106613852084,
+    "entity_type=Person,country=China|Make statement|entity_type=Target,country=Egypt": 15.194356447085738,
+    "entity_type=Person|Make statement|entity_type=Target": 37.98422250431031,
+    "country=China|Make statement|entity_type=Target": 30.388712894171476,
+    "entity_type=Person,country=China|Make statement|entity_type=Target,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Country,country=France": 7.5955096101388335,
+    "entity_type=Person|Meet at a 'third' location|entity_type=Country": 7.5955096101388335,
+    "entity_type=Person|Meet at a 'third' location|country=France": 7.5955096101388335,
+    "country=China|Meet at a 'third' location|entity_type=Country": 7.5955096101388335,
+    "country=China|Meet at a 'third' location|country=France": 7.5955096101388335,
+    "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Person,country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person|Meet at a 'third' location|entity_type=Person": 37.99761622399092,
+    "entity_type=Person|Meet at a 'third' location|country=UNKNOWN": 30.402106613852084,
+    "country=China|Meet at a 'third' location|entity_type=Person": 37.99761622399092,
+    "country=China|Meet at a 'third' location|country=UNKNOWN": 30.402106613852084,
+    "entity_type=Person,country=China|Meet at a 'third' location|entity_type=Person,country=United States": 7.5955096101388335,
+    "entity_type=Person|Meet at a 'third' location|country=United States": 7.5955096101388335,
+    "country=China|Meet at a 'third' location|country=United States": 7.5955096101388335,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=GovernmentOrganization,country=Egypt": 15.194356447085738,
+    "entity_type=Person|Praise or endorse|entity_type=GovernmentOrganization": 15.194356447085738,
+    "entity_type=Person|Praise or endorse|country=Egypt": 22.78986605722457,
+    "country=China|Praise or endorse|entity_type=GovernmentOrganization": 15.194356447085738,
+    "country=China|Praise or endorse|country=Egypt": 22.78986605722457,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=Organization,country=Egypt": 7.5955096101388335,
+    "entity_type=Person|Praise or endorse|entity_type=Organization": 7.5955096101388335,
+    "country=China|Praise or endorse|entity_type=Organization": 7.5955096101388335,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=Person,country=UNKNOWN": 22.79655169416219,
+    "entity_type=Person|Praise or endorse|entity_type=Person": 22.79655169416219,
+    "entity_type=Person|Praise or endorse|country=UNKNOWN": 37.98757091443986,
+    "country=China|Praise or endorse|entity_type=Person": 22.79655169416219,
+    "country=China|Praise or endorse|country=UNKNOWN": 30.392061304301023,
+    "entity_type=Person,country=China|Praise or endorse|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Praise or endorse|entity_type=Target": 15.191019220277667,
+    "country=China|Praise or endorse|entity_type=Target": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Engage in negotiation|entity_type=Country,country=Japan": 7.5955096101388335,
+    "entity_type=Person|Engage in negotiation|entity_type=Country": 7.5955096101388335,
+    "entity_type=Person|Engage in negotiation|country=Japan": 7.5955096101388335,
+    "country=Japan|Engage in negotiation|entity_type=Country": 7.5955096101388335,
+    "country=Japan|Engage in negotiation|country=Japan": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Country,country=Japan": 7.5955096101388335,
+    "entity_type=Person|Make statement|country=Japan": 7.5955096101388335,
+    "country=Japan|Make statement|entity_type=Country": 7.5955096101388335,
+    "country=Japan|Make statement|country=Japan": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Make statement|entity_type=GovernmentOrganization,country=India": 7.5955096101388335,
+    "entity_type=Person|Make statement|country=India": 22.78986605722457,
+    "country=Japan|Make statement|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "country=Japan|Make statement|country=India": 22.78986605722457,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Person,country=India": 15.194356447085738,
+    "country=Japan|Make statement|entity_type=Person": 22.78986605722457,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "country=Japan|Make statement|country=UNKNOWN": 15.191019220277667,
+    "entity_type=Person,country=Japan|Make statement|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "country=Japan|Make statement|entity_type=Target": 7.5955096101388335,
+    "entity_type=Person,country=Japan|Praise or endorse|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "country=Japan|Praise or endorse|entity_type=Target": 7.5955096101388335,
+    "country=Japan|Praise or endorse|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Arrest, detain, or charge with legal action|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=Person|Arrest, detain, or charge with legal action|entity_type=Target": 7.5955096101388335,
+    "entity_type=Person|Arrest, detain, or charge with legal action|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Arrest, detain, or charge with legal action|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Arrest, detain, or charge with legal action|country=India": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=GovernmentOrganization,country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Consult|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=Person|Consult|country=India": 15.191019220277667,
+    "country=UNKNOWN|Consult|entity_type=Person": 15.191019220277667,
+    "country=UNKNOWN|Consult|country=India": 30.382038440555334,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Consult|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Criticize or denounce|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Criticize or denounce|entity_type=Person": 7.5955096101388335,
+    "entity_type=Person|Criticize or denounce|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Criticize or denounce|entity_type=Person": 7.5955096101388335,
+    "country=UNKNOWN|Criticize or denounce|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Engage in diplomatic cooperation|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Engage in diplomatic cooperation|entity_type=Person": 7.5955096101388335,
+    "entity_type=Person|Engage in diplomatic cooperation|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Engage in diplomatic cooperation|entity_type=Person": 7.5955096101388335,
+    "country=UNKNOWN|Engage in diplomatic cooperation|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Engage in negotiation|entity_type=Target,country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Engage in negotiation|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Engage in negotiation|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Make an appeal or request|entity_type=GovernmentOrganization,country=India": 7.5955096101388335,
+    "entity_type=Person|Make an appeal or request|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Make an appeal or request|entity_type=GovernmentOrganization": 7.5955096101388335,
+    "country=UNKNOWN|Make an appeal or request|country=India": 60.814360114745796,
+    "entity_type=Person,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person,country=UNKNOWN|Sign formal agreement|entity_type=Target,country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person|Sign formal agreement|entity_type=Target": 15.194356447085738,
+    "entity_type=Person|Sign formal agreement|country=UNKNOWN": 15.194356447085738,
+    "country=UNKNOWN|Sign formal agreement|entity_type=Target": 15.194356447085738,
+    "country=UNKNOWN|Sign formal agreement|country=UNKNOWN": 15.194356447085738,
+    "entity_type=Person,country=UNKNOWN|Use conventional military force|entity_type=Person,country=UNKNOWN": 7.5955096101388335,
+    "entity_type=Person|Use conventional military force|entity_type=Person": 7.5955096101388335,
+    "entity_type=Person|Use conventional military force|country=UNKNOWN": 7.5955096101388335,
+    "country=UNKNOWN|Use conventional military force|entity_type=Person": 7.5955096101388335,
+    "country=UNKNOWN|Use conventional military force|country=UNKNOWN": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse|entity_type=Person,country=UNKNOWN": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Accuse|entity_type=Person": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Accuse|country=UNKNOWN": 15.194356447085738,
+    "country=UNKNOWN|Accuse|entity_type=Person": 15.194356447085738,
+    "country=UNKNOWN|Accuse|country=UNKNOWN": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Accuse|entity_type=Target": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Accuse|country=India": 15.194356447085738,
+    "country=UNKNOWN|Accuse|entity_type=Target": 15.194356447085738,
+    "country=UNKNOWN|Accuse|country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Accuse of crime, corruption|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Accuse of crime, corruption|entity_type=Target": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Accuse of crime, corruption|country=India": 15.194356447085738,
+    "country=UNKNOWN|Accuse of crime, corruption|entity_type=Target": 15.194356447085738,
+    "country=UNKNOWN|Accuse of crime, corruption|country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Appeal to engage in or accept mediation|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Appeal to engage in or accept mediation|entity_type=Person": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Appeal to engage in or accept mediation|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Appeal to engage in or accept mediation|entity_type=Person": 7.5955096101388335,
+    "country=UNKNOWN|Appeal to engage in or accept mediation|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Consult|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Consult|entity_type=Person": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Consult|country=India": 15.191019220277667,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Consult|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Consult|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Criticize or denounce|entity_type=Target,country=India": 22.79655169416219,
+    "entity_type=PoliticalOrganization|Criticize or denounce|entity_type=Target": 22.79655169416219,
+    "entity_type=PoliticalOrganization|Criticize or denounce|country=India": 22.79655169416219,
+    "country=UNKNOWN|Criticize or denounce|entity_type=Target": 22.79655169416219,
+    "country=UNKNOWN|Criticize or denounce|country=India": 22.79655169416219,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Defend verbally|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Defend verbally|entity_type=Person": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Defend verbally|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Defend verbally|entity_type=Person": 7.5955096101388335,
+    "country=UNKNOWN|Defend verbally|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Demand|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Demand|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Demand|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Demand|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Demand|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Engage in symbolic act|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Engage in symbolic act|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Engage in symbolic act|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Engage in symbolic act|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Engage in symbolic act|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Expel or deport individuals|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Expel or deport individuals|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Expel or deport individuals|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Expel or deport individuals|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Expel or deport individuals|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to meet or negotiate|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Express intent to meet or negotiate|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Express intent to meet or negotiate|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Express intent to meet or negotiate|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Express intent to meet or negotiate|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to provide humanitarian aid|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Express intent to provide humanitarian aid|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Express intent to provide humanitarian aid|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Express intent to provide humanitarian aid|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Express intent to provide humanitarian aid|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Express intent to provide material aid|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Express intent to provide material aid|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Express intent to provide material aid|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Express intent to provide material aid|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Express intent to provide material aid|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make an appeal or request|entity_type=Person,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Make an appeal or request|entity_type=Person": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Make an appeal or request|country=India": 53.21885050460696,
+    "country=UNKNOWN|Make an appeal or request|entity_type=Person": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make an appeal or request|entity_type=Target,country=India": 45.62334089446813,
+    "entity_type=PoliticalOrganization|Make an appeal or request|entity_type=Target": 45.62334089446813,
+    "country=UNKNOWN|Make an appeal or request|entity_type=Target": 45.62334089446813,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Person,country=India": 22.79655169416219,
+    "entity_type=PoliticalOrganization|Make statement|entity_type=Person": 45.59310338832438,
+    "entity_type=PoliticalOrganization|Make statement|country=India": 45.58641775138676,
+    "country=UNKNOWN|Make statement|country=India": 45.58641775138676,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Person,country=UNKNOWN": 22.79655169416219,
+    "entity_type=PoliticalOrganization|Make statement|country=UNKNOWN": 22.79655169416219,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=PoliticalOrganization,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Make statement|entity_type=PoliticalOrganization": 7.5955096101388335,
+    "country=UNKNOWN|Make statement|entity_type=PoliticalOrganization": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Make statement|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Make statement|entity_type=Target": 15.194356447085738,
+    "country=UNKNOWN|Make statement|entity_type=Target": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Praise or endorse|entity_type=Target,country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Praise or endorse|entity_type=Target": 15.194356447085738,
+    "entity_type=PoliticalOrganization|Praise or endorse|country=India": 15.194356447085738,
+    "country=UNKNOWN|Praise or endorse|entity_type=Target": 15.194356447085738,
+    "country=UNKNOWN|Praise or endorse|country=India": 15.194356447085738,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Rally opposition against|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Rally opposition against|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Rally opposition against|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Rally opposition against|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Rally opposition against|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Reduce relations|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Reduce relations|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Reduce relations|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Reduce relations|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Reduce relations|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Reject proposal to meet, discuss, or negotiate|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Reject proposal to meet, discuss, or negotiate|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Reject proposal to meet, discuss, or negotiate|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Reject proposal to meet, discuss, or negotiate|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Reject proposal to meet, discuss, or negotiate|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Threaten|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Threaten|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Threaten|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Threaten|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Threaten|country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization,country=UNKNOWN|Use conventional military force|entity_type=Target,country=India": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Use conventional military force|entity_type=Target": 7.5955096101388335,
+    "entity_type=PoliticalOrganization|Use conventional military force|country=India": 7.5955096101388335,
+    "country=UNKNOWN|Use conventional military force|entity_type=Target": 7.5955096101388335,
+    "country=UNKNOWN|Use conventional military force|country=India": 7.5955096101388335
+  }
+}
