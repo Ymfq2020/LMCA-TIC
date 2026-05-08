@@ -1,0 +1,44 @@
+name: rho_0p10_icews14
+dataset_name: ICEWS14
+raw_dir: data/local/icews14/raw
+processed_dir: data/processed/icews14
+bie_path: data/local/icews14/bie/entity_metadata.jsonl
+bie_ordered_keys: [entity_type, country, sector, city, region, role, alias, description]
+ontology_keys: [entity_type, country]
+delimiter: "\t"
+seed: 42
+num_epochs: 100
+micro_batch_size: 64
+gradient_accumulation_steps: 16
+learning_rate: 0.001
+warmup_ratio: 0.1
+early_stopping_patience: 10
+output_dir: outputs/rho_0p10_icews14
+log_dir: logs/rho_0p10_icews14
+checkpoint_dir: checkpoints/rho_0p10_icews14
+metadata:
+  rho_value: 0.1
+  variant: rho-sweep
+model:
+  llm_name: Qwen/Qwen3-8B
+  embedding_dim: 200
+  lora_r: 16
+  lora_alpha: 32
+  lora_target_modules: [q_proj, v_proj]
+  time_encoding_dim: 64
+  tgn_neighbor_size: 10
+  tgn_time_window_days: 14
+  tgn_memory_dim: 200
+  fusion_hidden_dim: 128
+  use_llm: true
+  use_temporal: true
+  use_tgn: true
+  use_gate: true
+  use_4bit: true
+negative_sampling:
+  mode: ontology_weighted
+  k_recall: 256
+  n_neg: 256
+  tau: 0.5
+  alpha: 0.2
+  rho: 0.1

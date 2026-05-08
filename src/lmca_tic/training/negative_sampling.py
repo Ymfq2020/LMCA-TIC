@@ -67,15 +67,17 @@ class HardNegativeSampler:
         candidate_scores: dict[str, float],
         candidate_types: dict[str, tuple[str, ...]],
     ) -> list[tuple[str, float]]:
+        # Eq. (3-25): p̃_j = p_j + ρ * η_j with ρ from configuration.
+        rho = float(getattr(self.config, "rho", 0.0))
         weighted: list[tuple[str, float]] = []
         for entity in filtered:
             base_score = self._finite_or_default(candidate_scores.get(entity, 0.0))
             ontology_bonus = 0.0
-            if self.scorer is not None:
+            if self.scorer is not None and rho > 0.0:
                 ontology_bonus = self._finite_or_default(
                     self.scorer.score(subject_types, relation, candidate_types.get(entity, ()))
                 )
-            weighted.append((entity, self._finite_or_default(base_score + ontology_bonus)))
+            weighted.append((entity, self._finite_or_default(base_score + rho * ontology_bonus)))
         return weighted
 
     def _hybrid_sample(self, weighted: list[tuple[str, float]]) -> list[str]:
@@ -87,6 +89,7 @@ class HardNegativeSampler:
         if probabilistic_count == 0 or not residual:
             return deterministic[: self.config.n_neg]
 
+        # Eq. (3-26): temperature-normalised soft sampling distribution ω.
         logits = [self._finite_or_default(score) / max(self.config.tau, 1e-6) for _, score in residual]
         max_logit = max(logits)
         probs = [self._finite_or_default(math.exp(logit - max_logit)) for logit in logits]

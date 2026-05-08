@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(brew list *)",
+      "Bash(pip3 list *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -)",
+      "Bash(chmod +x /Users/liangqin/Documents/李承泽论文/论文源程序/LMCA-TIC/scripts/run_chapter3_full_workflow.sh)",
+      "Bash(python3 -m pip install --quiet torch)",
+      "Bash(PYTHONPATH=src python3 -m pytest tests/ -x --no-header -q)",
+      "Bash(python3 -m pip install --quiet pytest pyyaml)",
+      "Bash(PYTHONPATH=src python3 -c ' *)"
+    ]
+  }
+}

@@ -30,8 +30,8 @@ SUITES: dict[str, list[str]] = {
     "ablation": [
         "configs/experiments/full_icews14.yaml",
         "configs/experiments/ablation_wo_llm_icews14.yaml",
-        "configs/experiments/ablation_wo_tcn_icews14.yaml",
         "configs/experiments/ablation_wo_tgn_icews14.yaml",
+        "configs/experiments/ablation_wo_temporal_icews14.yaml",
         "configs/experiments/ablation_wo_gate_icews14.yaml",
     ],
     "negative": [
@@ -45,6 +45,29 @@ SUITES: dict[str, list[str]] = {
         "configs/experiments/micro_v3_sl_icews14.yaml",
         "configs/experiments/micro_v4_gs_ni_sl_icews14.yaml",
         "configs/experiments/micro_ours_ni_sl_icews14.yaml",
+    ],
+    "rho_sweep": [
+        "configs/experiments/rho_0p00_icews14.yaml",
+        "configs/experiments/rho_0p10_icews14.yaml",
+        "configs/experiments/rho_0p20_icews14.yaml",
+        "configs/experiments/rho_0p30_icews14.yaml",
+        "configs/experiments/rho_0p50_icews14.yaml",
+        "configs/experiments/rho_0p70_icews14.yaml",
+        "configs/experiments/rho_1p00_icews14.yaml",
+    ],
+    "backbone_icews14": [
+        "configs/experiments/backbone_qwen3_8b_icews14.yaml",
+        "configs/experiments/backbone_llama3_8b_icews14.yaml",
+        "configs/experiments/backbone_mistral_7b_icews14.yaml",
+        "configs/experiments/backbone_qwen25_15b_icews14.yaml",
+        "configs/experiments/backbone_deberta_v3_large_icews14.yaml",
+    ],
+    "backbone_icews05_15": [
+        "configs/experiments/backbone_qwen3_8b_icews05_15.yaml",
+        "configs/experiments/backbone_llama3_8b_icews05_15.yaml",
+        "configs/experiments/backbone_mistral_7b_icews05_15.yaml",
+        "configs/experiments/backbone_qwen25_15b_icews05_15.yaml",
+        "configs/experiments/backbone_deberta_v3_large_icews05_15.yaml",
     ],
 }
 
@@ -105,6 +128,40 @@ def run_window_sensitivity(
         config.name = f"{base_config.name}_w{int(window)}d"
         config.model.tgn_time_window_days = int(window)
         configs.append(config)
+    return run_seeded_config_objects(configs, seeds=seeds, output_root=output_root, smoke=smoke)
+
+
+def run_rho_sensitivity(
+    base_config_path: str | Path = "configs/experiments/full_icews14.yaml",
+    rhos: Iterable[float] = (0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0),
+    seeds: Iterable[int] = DEFAULT_SEEDS,
+    output_root: str | Path = "outputs/experiments/rho_sensitivity",
+    smoke: bool = False,
+) -> dict[str, object]:
+    """Sweep summary-weight coefficient ρ (Eq. 3-25)."""
+
+    base_config = load_experiment_config(base_config_path)
+    configs = []
+    for rho in rhos:
+        rho_value = float(rho)
+        config = deepcopy(base_config)
+        tag = f"{rho_value:0.2f}".replace(".", "p")
+        config.name = f"{base_config.name}_rho{tag}"
+        config.negative_sampling.rho = rho_value
+        config.metadata = {**config.metadata, "rho_value": rho_value}
+        configs.append(config)
+    return run_seeded_config_objects(configs, seeds=seeds, output_root=output_root, smoke=smoke)
+
+
+def run_backbone_sensitivity(
+    config_paths: Iterable[str | Path],
+    seeds: Iterable[int] = (42,),
+    output_root: str | Path = "outputs/experiments/backbone_sensitivity",
+    smoke: bool = False,
+) -> dict[str, object]:
+    """Run the LLM backbone replacement experiments described in Table 3-10."""
+
+    configs = [load_experiment_config(path) for path in config_paths]
     return run_seeded_config_objects(configs, seeds=seeds, output_root=output_root, smoke=smoke)
 
 

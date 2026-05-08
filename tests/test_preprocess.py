@@ -35,7 +35,16 @@ def test_temporal_neighbor_sampling_blocks_future_leakage():
         TemporalQuadruple("A", "r", "C", 3, "train"),
         TemporalQuadruple("A", "r", "D", 5, "train"),
     ]
-    neighbors, _ = sample_temporal_neighbors(history, "A", "B", timestamp=3, window_days=5, max_neighbors=10)
-    assert "D" not in neighbors
+    (
+        subject_neighbors,
+        subject_relations,
+        subject_deltas,
+        _,
+        _,
+        _,
+    ) = sample_temporal_neighbors(history, "A", "B", timestamp=3, window_days=5, max_neighbors=10)
+    assert "D" not in subject_neighbors
+    assert len(subject_neighbors) == len(subject_relations) == len(subject_deltas)
+    assert all(delta >= 0 for delta in subject_deltas)
     deltas = neighbor_time_deltas(history, "A", timestamp=3, window_days=5, max_neighbors=10)
     assert all(delta >= 0 for delta in deltas)

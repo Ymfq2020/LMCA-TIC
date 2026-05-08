@@ -1,4 +1,4 @@
-"""Bilinear link scoring."""
+"""Bilinear link scoring per Eq. (3-19)."""
 
 from __future__ import annotations
 
@@ -18,11 +18,16 @@ _BaseModule = nn.Module if hasattr(nn, "Module") else object
 
 
 class BilinearScorer(_BaseModule):
-    def __init__(self, num_relations: int, embedding_dim: int) -> None:
+    """z_j(s, r, t) = (W_s e_s_final(t) + r_t) · (W_o e_o_final(t))."""
+
+    def __init__(self, embedding_dim: int) -> None:
         require_dependency(torch, "torch")
         super().__init__()
-        self.relation_embedding = nn.Embedding(num_relations, embedding_dim)
+        self.subject_proj = nn.Linear(embedding_dim, embedding_dim)
+        self.object_proj = nn.Linear(embedding_dim, embedding_dim)
 
-    def forward(self, subject_embed, relation_ids, object_embed):
-        relation = self.relation_embedding(relation_ids)
-        return (subject_embed * relation * object_embed).sum(dim=-1)
+    def forward(self, subject_embed, time_aware_relation, object_embed):
+        # Broadcast over candidate axes if needed.
+        subject_part = self.subject_proj(subject_embed) + time_aware_relation
+        object_part = self.object_proj(object_embed)
+        return (subject_part * object_part).sum(dim=-1)

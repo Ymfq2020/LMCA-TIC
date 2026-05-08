@@ -1,4 +1,4 @@
-"""Adaptive gating for Eq. (3-9) and Eq. (3-10)."""
+"""Adaptive gating for Eq. (3-16), (3-17), (3-18)."""
 
 from __future__ import annotations
 
@@ -27,26 +27,32 @@ def normalize_modal_weights(values: Sequence[float]) -> list[float]:
 
 
 class AdaptiveFusion(_BaseModule):
+    """Sigmoid binary gate over (text, struct) per Eq. (3-17)/(3-18)."""
+
     def __init__(self, config: ModelConfig) -> None:
         require_dependency(torch, "torch")
         super().__init__()
         self.use_gate = config.use_gate
         self.gate = nn.Sequential(
-            nn.Linear(config.embedding_dim * 3, config.fusion_hidden_dim),
+            nn.Linear(config.embedding_dim * 2, config.fusion_hidden_dim),
             nn.ReLU(),
-            nn.Linear(config.fusion_hidden_dim, config.fusion_hidden_dim),
-            nn.ReLU(),
-            nn.Linear(config.fusion_hidden_dim, 3),
+            nn.Linear(config.fusion_hidden_dim, 1),
         )
 
-    def forward(self, text_embed, time_embed, struct_embed):
+    def forward(self, text_embed, struct_embed):
         if not self.use_gate:
-            return (text_embed + time_embed + struct_embed) / 3.0, None
-        concat = torch.cat([text_embed, time_embed, struct_embed], dim=-1)
-        weights = torch.softmax(self.gate(concat), dim=-1)
-        fused = (
-            weights[:, 0:1] * text_embed
-            + weights[:, 1:2] * time_embed
-            + weights[:, 2:3] * struct_embed
-        )
-        return fused, weights
+            fused = 0.5 * text_embed + 0.5 * struct_embed
+            weights = torch.full(
+                (text_embed.size(0), 1),
+                0.5,
+                dtype=text_embed.dtype,
+                device=text_embed.device,
+            )
+            return fused, weights
+        # Eq. (3-16): z_x(t) = [e_x_text || e_x_struct(t)]
+        concat = torch.cat([text_embed, struct_embed], dim=-1)
+        # Eq. (3-17): g_x(t) = σ(w_g · z_x(t) + b_g)
+        gate_weight = torch.sigmoid(self.gate(concat))
+        # Eq. (3-18): e_final = g · e_text + (1 - g) · e_struct
+        fused = gate_weight * text_embed + (1.0 - gate_weight) * struct_embed
+        return fused, gate_weight

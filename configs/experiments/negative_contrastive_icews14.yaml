@@ -9,14 +9,25 @@ delimiter: "\t"
 output_dir: outputs/negative_contrastive_icews14
 log_dir: logs/negative_contrastive_icews14
 checkpoint_dir: checkpoints/negative_contrastive_icews14
+metadata:
+  variant: LMCA-TIC-C
 model:
+  llm_name: Qwen/Qwen3-8B
+  embedding_dim: 200
+  time_encoding_dim: 64
+  tgn_neighbor_size: 10
+  tgn_time_window_days: 14
+  tgn_memory_dim: 200
+  fusion_hidden_dim: 128
   use_llm: true
-  use_tcn: true
+  use_temporal: true
   use_tgn: true
   use_gate: true
+  use_4bit: true
 negative_sampling:
   mode: contrastive_equal
   k_recall: 256
-  n_neg: 64
-  tau: 0.7
-  alpha: 0.5
+  n_neg: 256
+  tau: 0.5
+  alpha: 0.2
+  rho: 0.0

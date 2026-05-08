@@ -22,7 +22,7 @@ log_every_n_steps: 10
 output_dir: outputs/full_icews05_15
 log_dir: logs/full_icews05_15
 checkpoint_dir: checkpoints/full_icews05_15
-baseline_reference_path: references/table3_2_reference.csv
+baseline_reference_path: references/table3_3_reference.csv
 model:
   llm_name: Qwen/Qwen3-8B
   smoke_llm_name: distilbert-base-uncased
@@ -30,15 +30,18 @@ model:
   lora_r: 16
   lora_alpha: 32
   lora_dropout: 0.05
+  lora_target_modules: [q_proj, v_proj]
+  time_encoding_dim: 64
   tcn_kernel_size: 2
   tcn_dilations: [1, 2, 4, 8]
   tgn_neighbor_size: 10
-  tgn_time_window_days: 30
+  tgn_time_window_days: 14
   tgn_memory_dim: 200
   tgn_time_decay_init: 0.1
   fusion_hidden_dim: 128
   use_llm: true
-  use_tcn: true
+  use_temporal: true
+  use_tcn: false
   use_tgn: true
   use_gate: true
   use_gs: false
@@ -48,7 +51,8 @@ model:
 negative_sampling:
   mode: ontology_weighted
   k_recall: 256
-  n_neg: 64
-  tau: 0.7
-  alpha: 0.5
+  n_neg: 256
+  tau: 0.5
+  alpha: 0.2
+  rho: 0.3
   faiss_enabled: false

@@ -30,6 +30,8 @@ class LocalProcessedDataset:
             relation_history=[float(v) for v in row["relation_history"]],
             subject_neighbors=list(row["subject_neighbors"]),
             object_neighbors=list(row["object_neighbors"]),
+            subject_neighbor_relations=list(row.get("subject_neighbor_relations", [])),
+            object_neighbor_relations=list(row.get("object_neighbor_relations", [])),
             subject_types=tuple(row["subject_types"]),
             object_types=tuple(row["object_types"]),
             negative_candidates=list(row.get("negative_candidates", [])),

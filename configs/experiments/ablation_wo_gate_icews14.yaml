@@ -17,12 +17,25 @@ output_dir: outputs/ablation_wo_gate_icews14
 log_dir: logs/ablation_wo_gate_icews14
 checkpoint_dir: checkpoints/ablation_wo_gate_icews14
 model:
+  llm_name: Qwen/Qwen3-8B
+  embedding_dim: 200
+  time_encoding_dim: 64
+  tgn_neighbor_size: 10
+  tgn_time_window_days: 14
+  tgn_memory_dim: 200
+  fusion_hidden_dim: 128
   use_llm: true
-  use_tcn: true
+  use_temporal: true
   use_tgn: true
   use_gate: false
   use_gs: false
   use_ni: true
   use_sl: true
+  use_4bit: true
 negative_sampling:
   mode: ontology_weighted
+  k_recall: 256
+  n_neg: 256
+  tau: 0.5
+  alpha: 0.2
+  rho: 0.3

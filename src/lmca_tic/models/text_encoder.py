@@ -93,11 +93,12 @@ class LLMTextEncoder(_BaseModule):
             and get_peft_model is not None
             and LoraConfig is not None
         ):
+            target_modules = list(config.lora_target_modules) or ["q_proj", "v_proj"]
             lora_config = LoraConfig(
                 r=config.lora_r,
                 lora_alpha=config.lora_alpha,
                 lora_dropout=config.lora_dropout,
-                target_modules=["q_proj", "v_proj"],
+                target_modules=target_modules,
                 task_type="FEATURE_EXTRACTION",
             )
             base_model = get_peft_model(base_model, lora_config)

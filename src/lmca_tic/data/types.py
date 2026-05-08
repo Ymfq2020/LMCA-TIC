@@ -33,6 +33,8 @@ class ProcessedSample:
     object_neighbors: list[str]
     subject_types: tuple[str, ...]
     object_types: tuple[str, ...]
+    subject_neighbor_relations: list[str] = field(default_factory=list)
+    object_neighbor_relations: list[str] = field(default_factory=list)
     negative_candidates: list[str] = field(default_factory=list)
     extra: dict[str, Any] = field(default_factory=dict)
 
@@ -51,6 +53,8 @@ class ProcessedSample:
             "relation_history": self.relation_history,
             "subject_neighbors": self.subject_neighbors,
             "object_neighbors": self.object_neighbors,
+            "subject_neighbor_relations": self.subject_neighbor_relations,
+            "object_neighbor_relations": self.object_neighbor_relations,
             "subject_types": list(self.subject_types),
             "object_types": list(self.object_types),
             "negative_candidates": self.negative_candidates,

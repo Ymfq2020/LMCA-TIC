@@ -133,7 +133,14 @@ class LocalTKGPreprocessor:
         subject_record = self.bie_records.get(quadruple.subject, empty_bie_record(quadruple.subject))
         object_record = self.bie_records.get(quadruple.object, empty_bie_record(quadruple.object))
         relation_history = relation_history_vector(history, quadruple.relation, quadruple.timestamp)
-        subject_neighbors, object_neighbors = sample_temporal_neighbors(
+        (
+            subject_neighbors,
+            subject_neighbor_relations,
+            subject_neighbor_deltas,
+            object_neighbors,
+            object_neighbor_relations,
+            object_neighbor_deltas,
+        ) = sample_temporal_neighbors(
             history=history,
             subject=quadruple.subject,
             obj=quadruple.object,
@@ -159,23 +166,13 @@ class LocalTKGPreprocessor:
             relation_history=relation_history,
             subject_neighbors=subject_neighbors,
             object_neighbors=object_neighbors,
+            subject_neighbor_relations=subject_neighbor_relations,
+            object_neighbor_relations=object_neighbor_relations,
             subject_types=subject_types,
             object_types=object_types,
             extra={
-                "subject_neighbor_deltas": neighbor_time_deltas(
-                    history,
-                    quadruple.subject,
-                    quadruple.timestamp,
-                    self.config.model.tgn_time_window_days,
-                    self.config.model.tgn_neighbor_size,
-                ),
-                "object_neighbor_deltas": neighbor_time_deltas(
-                    history,
-                    quadruple.object,
-                    quadruple.timestamp,
-                    self.config.model.tgn_time_window_days,
-                    self.config.model.tgn_neighbor_size,
-                ),
+                "subject_neighbor_deltas": subject_neighbor_deltas,
+                "object_neighbor_deltas": object_neighbor_deltas,
             },
         )
 
@@ -230,24 +227,53 @@ def sample_temporal_neighbors(
     timestamp: int,
     window_days: int,
     max_neighbors: int,
-) -> tuple[list[str], list[str]]:
+) -> tuple[list[str], list[str], list[float], list[str], list[str], list[float]]:
+    """Return neighbor entities, relations and Δt for both subject and object.
+
+    Each neighbor entry comes from a quadruple with timestamp in
+    ``[timestamp - window_days, timestamp]``. The relation associated with
+    each neighbor records whether the focal entity sat on the subject or
+    object side of that historical edge so the encoder can recover
+    direction-aware features.
+    """
+
     lower_bound = timestamp - window_days
     subject_neighbors: list[str] = []
+    subject_relations: list[str] = []
+    subject_deltas: list[float] = []
     object_neighbors: list[str] = []
+    object_relations: list[str] = []
+    object_deltas: list[float] = []
     for quadruple in history:
         if quadruple.timestamp > timestamp:
             continue
         if quadruple.timestamp < lower_bound:
             continue
+        delta = float(timestamp - quadruple.timestamp)
         if quadruple.subject == subject:
             subject_neighbors.append(quadruple.object)
+            subject_relations.append(quadruple.relation)
+            subject_deltas.append(delta)
         elif quadruple.object == subject:
             subject_neighbors.append(quadruple.subject)
+            subject_relations.append(f"{quadruple.relation}__inverse")
+            subject_deltas.append(delta)
         if quadruple.subject == obj:
             object_neighbors.append(quadruple.object)
+            object_relations.append(quadruple.relation)
+            object_deltas.append(delta)
         elif quadruple.object == obj:
             object_neighbors.append(quadruple.subject)
-    return subject_neighbors[-max_neighbors:], object_neighbors[-max_neighbors:]
+            object_relations.append(f"{quadruple.relation}__inverse")
+            object_deltas.append(delta)
+    return (
+        subject_neighbors[-max_neighbors:],
+        subject_relations[-max_neighbors:],
+        subject_deltas[-max_neighbors:],
+        object_neighbors[-max_neighbors:],
+        object_relations[-max_neighbors:],
+        object_deltas[-max_neighbors:],
+    )
 
 
 def neighbor_time_deltas(
@@ -257,6 +283,8 @@ def neighbor_time_deltas(
     window_days: int,
     max_neighbors: int,
 ) -> list[float]:
+    """Backward-compatible helper kept for tests and notebooks."""
+
     lower_bound = timestamp - window_days
     deltas: list[float] = []
     for quadruple in history:

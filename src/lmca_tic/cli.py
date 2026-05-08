@@ -16,7 +16,9 @@ from lmca_tic.experiments.runner import (
     evaluate_noise_sensitivity,
     evaluate_prediction_subset,
     merge_reference_baselines,
+    run_backbone_sensitivity,
     run_experiment_suite,
+    run_rho_sensitivity,
     run_seeded_suite,
     run_train_ratio_sensitivity,
     run_window_sensitivity,
@@ -59,6 +61,20 @@ def main() -> None:
     window_parser.add_argument("--seeds", nargs="+", type=int, default=DEFAULT_SEEDS)
     window_parser.add_argument("--output-root", default="outputs/experiments/window_sensitivity")
     window_parser.add_argument("--smoke", action="store_true")
+
+    rho_parser = subparsers.add_parser("rho-sensitivity")
+    rho_parser.add_argument("--config", default="configs/experiments/full_icews14.yaml")
+    rho_parser.add_argument("--rhos", nargs="+", type=float, default=[0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0])
+    rho_parser.add_argument("--seeds", nargs="+", type=int, default=[42])
+    rho_parser.add_argument("--output-root", default="outputs/experiments/rho_sensitivity")
+    rho_parser.add_argument("--smoke", action="store_true")
+
+    backbone_parser = subparsers.add_parser("backbone-sensitivity")
+    backbone_parser.add_argument("--config", nargs="+")
+    backbone_parser.add_argument("--suite", choices=["backbone_icews14", "backbone_icews05_15"])
+    backbone_parser.add_argument("--seeds", nargs="+", type=int, default=[42])
+    backbone_parser.add_argument("--output-root", default="outputs/experiments/backbone_sensitivity")
+    backbone_parser.add_argument("--smoke", action="store_true")
 
     train_ratio_parser = subparsers.add_parser("train-ratio")
     train_ratio_parser.add_argument("--config", default="configs/experiments/full_icews14.yaml")
@@ -165,6 +181,29 @@ def main() -> None:
         run_window_sensitivity(
             base_config_path=args.config,
             windows=args.windows,
+            seeds=args.seeds,
+            output_root=args.output_root,
+            smoke=args.smoke,
+        )
+        return
+    if args.command == "rho-sensitivity":
+        run_rho_sensitivity(
+            base_config_path=args.config,
+            rhos=args.rhos,
+            seeds=args.seeds,
+            output_root=args.output_root,
+            smoke=args.smoke,
+        )
+        return
+    if args.command == "backbone-sensitivity":
+        if args.config:
+            config_paths = args.config
+        elif args.suite:
+            config_paths = SUITES[args.suite]
+        else:
+            raise ValueError("backbone-sensitivity requires --config or --suite.")
+        run_backbone_sensitivity(
+            config_paths=config_paths,
             seeds=args.seeds,
             output_root=args.output_root,
             smoke=args.smoke,
