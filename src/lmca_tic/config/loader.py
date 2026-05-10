@@ -18,7 +18,9 @@ from .schemas import ExperimentConfig, ModelConfig, NegativeSamplerConfig
 
 def load_experiment_config(path: str | Path) -> ExperimentConfig:
     data = _load_mapping(path)
-    model = ModelConfig(**data.pop("model", {}))
+    model_data = dict(data.pop("model", {}))
+    _strip_legacy_tcn_keys(model_data)
+    model = ModelConfig(**model_data)
     negative_sampling = NegativeSamplerConfig(**data.pop("negative_sampling", {}))
     return ExperimentConfig(model=model, negative_sampling=negative_sampling, **data)
 
@@ -66,6 +68,13 @@ def _load_mapping(path: str | Path) -> dict[str, Any]:
             return _mini_yaml_load(payload)
         return yaml.safe_load(payload)
     return json.loads(payload)
+
+
+def _strip_legacy_tcn_keys(model_data: dict[str, Any]) -> None:
+    # Historical configs may still carry TCN keys from an abandoned branch.
+    # Ignore them so old experiment YAML files remain loadable.
+    for key in ("use_tcn", "tcn_kernel_size", "tcn_dilations"):
+        model_data.pop(key, None)
 
 
 def _mini_yaml_load(payload: str) -> dict[str, Any]:

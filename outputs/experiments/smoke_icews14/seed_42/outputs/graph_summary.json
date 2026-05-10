@@ -1,0 +1,115 @@
+{
+  "rules": [
+    {
+      "rule_id": "entity_type=Country,country=CN|criticize|entity_type=Country,country=US",
+      "support": 1,
+      "coverage": 0.2,
+      "rule_gain": 2.9957322735539833
+    },
+    {
+      "rule_id": "entity_type=Country,country=FR|aid|entity_type=Organization,country=INTL",
+      "support": 1,
+      "coverage": 0.2,
+      "rule_gain": 2.9957322735539833
+    },
+    {
+      "rule_id": "entity_type=Country,country=US|aid|entity_type=Organization,country=INTL",
+      "support": 1,
+      "coverage": 0.2,
+      "rule_gain": 2.9957322735539833
+    },
+    {
+      "rule_id": "entity_type=Country,country=US|meet|entity_type=Organization,country=INTL",
+      "support": 1,
+      "coverage": 0.2,
+      "rule_gain": 2.9957322735539833
+    },
+    {
+      "rule_id": "entity_type=Organization,country=INTL|sanction|entity_type=Organization,country=INTL",
+      "support": 1,
+      "coverage": 0.2,
+      "rule_gain": 2.9957322735539833
+    }
+  ],
+  "coverage": {
+    "meet": 0.2,
+    "criticize": 0.2,
+    "sanction": 0.2,
+    "aid": 0.4
+  },
+  "type_constraints": {
+    "meet": {
+      "src": [
+        "country=US",
+        "entity_type=Country"
+      ],
+      "dst": [
+        "country=INTL",
+        "entity_type=Organization"
+      ]
+    },
+    "criticize": {
+      "src": [
+        "country=CN",
+        "entity_type=Country"
+      ],
+      "dst": [
+        "country=US",
+        "entity_type=Country"
+      ]
+    },
+    "sanction": {
+      "src": [
+        "country=INTL",
+        "entity_type=Organization"
+      ],
+      "dst": [
+        "country=INTL",
+        "entity_type=Organization"
+      ]
+    },
+    "aid": {
+      "src": [
+        "country=FR",
+        "country=US",
+        "entity_type=Country"
+      ],
+      "dst": [
+        "country=INTL",
+        "entity_type=Organization"
+      ]
+    }
+  },
+  "rule_gain": {
+    "entity_type=Country,country=CN|criticize|entity_type=Country,country=US": 2.9957322735539833,
+    "entity_type=Country,country=FR|aid|entity_type=Organization,country=INTL": 2.9957322735539833,
+    "entity_type=Country,country=US|aid|entity_type=Organization,country=INTL": 2.9957322735539833,
+    "entity_type=Country,country=US|meet|entity_type=Organization,country=INTL": 2.9957322735539833,
+    "entity_type=Organization,country=INTL|sanction|entity_type=Organization,country=INTL": 2.9957322735539833
+  },
+  "negative_error_weight": {
+    "entity_type=Country,country=CN|criticize|entity_type=Country,country=US": 2.9957322735539833,
+    "entity_type=Country|criticize|entity_type=Country": 2.9957322735539833,
+    "entity_type=Country|criticize|country=US": 2.9957322735539833,
+    "country=CN|criticize|entity_type=Country": 2.9957322735539833,
+    "country=CN|criticize|country=US": 2.9957322735539833,
+    "entity_type=Country,country=FR|aid|entity_type=Organization,country=INTL": 2.9957322735539833,
+    "entity_type=Country|aid|entity_type=Organization": 5.991464547107967,
+    "entity_type=Country|aid|country=INTL": 5.991464547107967,
+    "country=FR|aid|entity_type=Organization": 2.9957322735539833,
+    "country=FR|aid|country=INTL": 2.9957322735539833,
+    "entity_type=Country,country=US|aid|entity_type=Organization,country=INTL": 2.9957322735539833,
+    "country=US|aid|entity_type=Organization": 2.9957322735539833,
+    "country=US|aid|country=INTL": 2.9957322735539833,
+    "entity_type=Country,country=US|meet|entity_type=Organization,country=INTL": 2.9957322735539833,
+    "entity_type=Country|meet|entity_type=Organization": 2.9957322735539833,
+    "entity_type=Country|meet|country=INTL": 2.9957322735539833,
+    "country=US|meet|entity_type=Organization": 2.9957322735539833,
+    "country=US|meet|country=INTL": 2.9957322735539833,
+    "entity_type=Organization,country=INTL|sanction|entity_type=Organization,country=INTL": 2.9957322735539833,
+    "entity_type=Organization|sanction|entity_type=Organization": 2.9957322735539833,
+    "entity_type=Organization|sanction|country=INTL": 2.9957322735539833,
+    "country=INTL|sanction|entity_type=Organization": 2.9957322735539833,
+    "country=INTL|sanction|country=INTL": 2.9957322735539833
+  }
+}

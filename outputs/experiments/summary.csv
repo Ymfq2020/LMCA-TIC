@@ -1,0 +1,2 @@
+experiment,num_runs,dataset,MRR_mean,MRR_std,Hits@1_mean,Hits@1_std,Hits@3_mean,Hits@3_std,Hits@10_mean,Hits@10_std
+smoke_icews14,3,ICEWS14-SMOKE,0.47222222222222227,0.19245008972987526,0.3333333333333333,0.28867513459481287,0.5,0.0,1.0,0.0

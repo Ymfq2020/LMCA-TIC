@@ -1,0 +1,19 @@
+{
+  "dataset_name": "ICEWS14-SMOKE",
+  "num_entities": 6,
+  "num_relations": 4,
+  "inverse_relations": [
+    "aid__inverse",
+    "criticize__inverse",
+    "meet__inverse",
+    "sanction__inverse"
+  ],
+  "inductive_stats": {
+    "train_inductive": 0,
+    "train_transductive": 5,
+    "valid_inductive": 0,
+    "valid_transductive": 2,
+    "test_inductive": 2,
+    "test_transductive": 0
+  }
+}

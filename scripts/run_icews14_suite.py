@@ -10,7 +10,7 @@ if __name__ == "__main__":
         [
             "configs/experiments/full_icews14.yaml",
             "configs/experiments/ablation_wo_llm_icews14.yaml",
-            "configs/experiments/ablation_wo_tcn_icews14.yaml",
+            "configs/experiments/ablation_wo_temporal_icews14.yaml",
             "configs/experiments/ablation_wo_tgn_icews14.yaml",
             "configs/experiments/ablation_wo_gate_icews14.yaml",
             "configs/experiments/negative_random_icews14.yaml",

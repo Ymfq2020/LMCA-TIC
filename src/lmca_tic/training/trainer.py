@@ -32,6 +32,7 @@ except ImportError:  # pragma: no cover - optional dependency
 from lmca_tic.config.loader import dump_experiment_config
 from lmca_tic.config.schemas import ExperimentConfig
 from lmca_tic.data.dataset import LocalProcessedDataset
+from lmca_tic.data.preprocess import build_entity_history_index, entity_temporal_context_from_index
 from lmca_tic.evaluation.filtered import FilteredEvaluator
 from lmca_tic.kgist.miner import KGISTSummaryMiner, NegativeErrorScorer
 from lmca_tic.models.model import LMCATICModel
@@ -78,7 +79,6 @@ class LMCATICTrainer:
         self.entity_to_idx = {entity_id: idx for idx, entity_id in enumerate(self.entities)}
         self.entity_prompts = {entity_id: self._entity_prompt(entity_id) for entity_id in self.entities}
         self.entity_types = {entity_id: self._entity_types(entity_id) for entity_id in self.entities}
-        self.entity_popularity = self._build_entity_popularity(self.train_dataset.samples) if hasattr(self, "train_dataset") else {}
         self.relation_to_idx = {
             relation: idx
             for idx, relation in enumerate(
@@ -88,11 +88,10 @@ class LMCATICTrainer:
         self.train_dataset = LocalProcessedDataset(config.processed_dir, "train")
         self.valid_dataset = LocalProcessedDataset(config.processed_dir, "valid")
         self.test_dataset = LocalProcessedDataset(config.processed_dir, "test")
+        self.train_history = [sample.quadruple for sample in self.train_dataset.samples]
+        self.entity_history_index = build_entity_history_index(self.train_history)
         self.entity_popularity = self._build_entity_popularity(self.train_dataset.samples)
         self.entities_by_type = self._build_entities_by_type()
-        self.entity_neighbor_cache, self.entity_neighbor_relation_cache, self.entity_delta_cache = (
-            self._build_entity_context_cache(self.train_dataset.samples)
-        )
         artifact = KGISTSummaryMiner(min_support=1).mine(self.train_dataset.samples)
         self.negative_scorer = NegativeErrorScorer(artifact)
         self.negative_sampler = HardNegativeSampler(config.negative_sampling, scorer=self.negative_scorer)
@@ -116,8 +115,6 @@ class LMCATICTrainer:
         self.use_grad_scaler = bool(self.use_amp and self.amp_dtype == torch.float16)
         self.scaler = torch.amp.GradScaler("cuda", enabled=self.use_grad_scaler)
         self.train_loader = self._build_dataloader(self.train_dataset, batch_size=config.micro_batch_size, shuffle=True)
-        self.valid_loader = self._build_dataloader(self.valid_dataset, batch_size=config.eval_batch_size, shuffle=False)
-        self.test_loader = self._build_dataloader(self.test_dataset, batch_size=config.eval_batch_size, shuffle=False)
         steps_per_epoch = max(math.ceil(len(self.train_loader) / max(config.gradient_accumulation_steps, 1)), 1)
         self.total_optimization_steps = steps_per_epoch * config.num_epochs
         self.scheduler = build_warmup_scheduler(
@@ -327,7 +324,6 @@ class LMCATICTrainer:
         }
 
     def _build_batch(self, samples, forced_negative_candidates: list[str] | None = None) -> dict[str, object]:
-        relation_histories = torch.tensor([sample.relation_history for sample in samples], dtype=torch.float32)
         subject_ids = torch.tensor([self.entity_to_idx[sample.quadruple.subject] for sample in samples], dtype=torch.long)
         object_ids = torch.tensor([self.entity_to_idx[sample.quadruple.object] for sample in samples], dtype=torch.long)
         relation_ids = torch.tensor([self.relation_to_idx[sample.quadruple.relation] for sample in samples], dtype=torch.long)
@@ -373,11 +369,10 @@ class LMCATICTrainer:
                     candidate_types=self.entity_types,
                 )
             )
-        negative_payload = self._build_negative_payload(negative_candidates)
+        negative_payload = self._build_negative_payload(samples, negative_candidates)
         batch = {
             "subject_prompts": [sample.subject_prompt for sample in samples],
             "positive_object_prompts": [sample.object_prompt for sample in samples],
-            "relation_histories": relation_histories,
             "query_timestamps": query_timestamps,
             "subject_ids": subject_ids,
             "positive_object_ids": object_ids,
@@ -406,7 +401,7 @@ class LMCATICTrainer:
             batch["negative_object_prompts_flat"] = encoder.tokenize_texts(batch["negative_object_prompts_flat"], device=None)
         return batch
 
-    def _build_negative_payload(self, negative_candidates: list[list[str]]) -> dict[str, object]:
+    def _build_negative_payload(self, samples, negative_candidates: list[list[str]]) -> dict[str, object]:
         max_neg = max((len(candidates) for candidates in negative_candidates), default=0)
         if max_neg == 0:
             return {
@@ -425,7 +420,8 @@ class LMCATICTrainer:
         neighbor_lists: list[list[str]] = []
         relation_lists: list[list[str]] = []
         delta_lists: list[list[float]] = []
-        for candidates in negative_candidates:
+        for sample, candidates in zip(samples, negative_candidates):
+            query_timestamp = int(sample.quadruple.timestamp)
             row_ids: list[int] = []
             row_mask: list[bool] = []
             fill_candidate = candidates[0] if candidates else next(iter(self.entities))
@@ -435,9 +431,10 @@ class LMCATICTrainer:
                 row_mask.append(idx < len(candidates))
                 flat_ids.append(self.entity_to_idx[candidate])
                 flat_prompts.append(self.entity_prompts[candidate])
-                neighbor_lists.append(self.entity_neighbor_cache.get(candidate, []))
-                relation_lists.append(self.entity_neighbor_relation_cache.get(candidate, []))
-                delta_lists.append(self.entity_delta_cache.get(candidate, []))
+                neighbors, relations, deltas = self._entity_context_at(candidate, query_timestamp)
+                neighbor_lists.append(neighbors)
+                relation_lists.append(relations)
+                delta_lists.append(deltas)
             padded_ids.append(row_ids)
             padded_mask.append(row_mask)
         (
@@ -461,7 +458,6 @@ class LMCATICTrainer:
         model.eval()
         with torch.no_grad():
             subject_prompts = model.text_encoder.tokenize_texts([sample.subject_prompt for sample in samples], device=self.device)
-            relation_histories = torch.tensor([sample.relation_history for sample in samples], dtype=torch.float32, device=self.device)
             subject_ids = torch.tensor([self.entity_to_idx[sample.quadruple.subject] for sample in samples], dtype=torch.long, device=self.device)
             relation_ids = torch.tensor([self.relation_to_idx[sample.quadruple.relation] for sample in samples], dtype=torch.long, device=self.device)
             query_timestamps = torch.tensor(
@@ -509,14 +505,18 @@ class LMCATICTrainer:
                             dtype=torch.long,
                             device=self.device,
                         )
+                        candidate_contexts = [
+                            self._entity_context_at(entity_id, int(sample.quadruple.timestamp))
+                            for entity_id in entity_chunk
+                        ]
                         (
                             candidate_neighbor_ids,
                             candidate_neighbor_relation_ids,
                             candidate_neighbor_deltas,
                         ) = self._pad_neighbors(
-                            [self.entity_neighbor_cache.get(entity_id, []) for entity_id in entity_chunk],
-                            [self.entity_neighbor_relation_cache.get(entity_id, []) for entity_id in entity_chunk],
-                            [self.entity_delta_cache.get(entity_id, []) for entity_id in entity_chunk],
+                            [neighbors for neighbors, _, _ in candidate_contexts],
+                            [relations for _, relations, _ in candidate_contexts],
+                            [deltas for _, _, deltas in candidate_contexts],
                         )
                         candidate_neighbor_ids = candidate_neighbor_ids.to(self.device)
                         candidate_neighbor_relation_ids = candidate_neighbor_relation_ids.to(self.device)
@@ -537,6 +537,15 @@ class LMCATICTrainer:
         if was_training:
             model.train()
         return candidate_score_rows
+
+    def _entity_context_at(self, entity_id: str, timestamp: int):
+        return entity_temporal_context_from_index(
+            history_index=self.entity_history_index,
+            entity=entity_id,
+            timestamp=timestamp,
+            window_days=self.config.model.tgn_time_window_days,
+            max_neighbors=self.config.model.tgn_neighbor_size,
+        )
 
     def _compute_loss(self, outputs: dict[str, object], batch: dict[str, object]):
         positive_scores = outputs["positive_scores"]
@@ -591,41 +600,6 @@ class LMCATICTrainer:
             torch.tensor(padded_relations, dtype=torch.long),
             torch.tensor(padded_deltas, dtype=torch.float32),
         )
-
-    def _build_entity_context_cache(self, samples):
-        latest_neighbors: dict[str, tuple[int, list[str], list[str], list[float]]] = {}
-        for sample in samples:
-            timestamp = sample.quadruple.timestamp
-            for entity_id, neighbors, relations, deltas in (
-                (
-                    sample.quadruple.subject,
-                    sample.subject_neighbors,
-                    sample.subject_neighbor_relations,
-                    sample.extra.get("subject_neighbor_deltas", []),
-                ),
-                (
-                    sample.quadruple.object,
-                    sample.object_neighbors,
-                    sample.object_neighbor_relations,
-                    sample.extra.get("object_neighbor_deltas", []),
-                ),
-            ):
-                previous = latest_neighbors.get(entity_id)
-                if previous is None or timestamp >= previous[0]:
-                    latest_neighbors[entity_id] = (
-                        timestamp,
-                        list(neighbors),
-                        list(relations),
-                        list(deltas),
-                    )
-        neighbor_cache = defaultdict(list)
-        relation_cache = defaultdict(list)
-        delta_cache = defaultdict(list)
-        for entity_id, (_, neighbors, relations, deltas) in latest_neighbors.items():
-            neighbor_cache[entity_id] = neighbors
-            relation_cache[entity_id] = relations
-            delta_cache[entity_id] = deltas
-        return neighbor_cache, relation_cache, delta_cache
 
     def _build_entity_popularity(self, samples):
         popularity = defaultdict(int)

@@ -1,0 +1,4 @@
+experiment,dataset,seed,MRR,Hits@1,Hits@3,Hits@10,output_dir,checkpoint_dir
+smoke_icews14,ICEWS14-SMOKE,42,0.5833333333333334,0.5,0.5,1.0,outputs/experiments/smoke_icews14/seed_42/outputs,outputs/experiments/smoke_icews14/seed_42/checkpoints
+smoke_icews14,ICEWS14-SMOKE,123,0.5833333333333334,0.5,0.5,1.0,outputs/experiments/smoke_icews14/seed_123/outputs,outputs/experiments/smoke_icews14/seed_123/checkpoints
+smoke_icews14,ICEWS14-SMOKE,456,0.25,0.0,0.5,1.0,outputs/experiments/smoke_icews14/seed_456/outputs,outputs/experiments/smoke_icews14/seed_456/checkpoints

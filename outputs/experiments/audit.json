@@ -1,0 +1,210 @@
+{
+  "reported_root": "paper_reported_results/chapter3",
+  "experiment_root": "outputs/experiments",
+  "reported_assets": [
+    {
+      "name": "manifest",
+      "relative_path": "manifest.json",
+      "exists": true
+    },
+    {
+      "name": "reported_results_jsonl",
+      "relative_path": "reported_results.jsonl",
+      "exists": true
+    },
+    {
+      "name": "table_3_3_main",
+      "relative_path": "table_3_3_main.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_3_main_json",
+      "relative_path": "table_3_3_main.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_4_inductive_subset",
+      "relative_path": "table_3_4_inductive_subset.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_4_inductive_subset_json",
+      "relative_path": "table_3_4_inductive_subset.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_5_few_shot",
+      "relative_path": "table_3_5_few_shot.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_5_few_shot_json",
+      "relative_path": "table_3_5_few_shot.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_6_train_scale",
+      "relative_path": "table_3_6_train_scale.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_6_train_scale_json",
+      "relative_path": "table_3_6_train_scale.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_7_chain_length",
+      "relative_path": "table_3_7_chain_length.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_7_chain_length_json",
+      "relative_path": "table_3_7_chain_length.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_8_window",
+      "relative_path": "table_3_8_window.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_8_window_json",
+      "relative_path": "table_3_8_window.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_9_ablation",
+      "relative_path": "table_3_9_ablation.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_9_ablation_json",
+      "relative_path": "table_3_9_ablation.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_10_backbone",
+      "relative_path": "table_3_10_backbone.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_10_backbone_json",
+      "relative_path": "table_3_10_backbone.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_11_noise",
+      "relative_path": "table_3_11_noise.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_11_noise_json",
+      "relative_path": "table_3_11_noise.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_12_micro",
+      "relative_path": "table_3_12_micro.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_12_micro_json",
+      "relative_path": "table_3_12_micro.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_13_negative",
+      "relative_path": "table_3_13_negative.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_13_negative_json",
+      "relative_path": "table_3_13_negative.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_14_rho",
+      "relative_path": "table_3_14_rho.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_14_rho_json",
+      "relative_path": "table_3_14_rho.json",
+      "exists": true
+    },
+    {
+      "name": "table_3_15_negative_open",
+      "relative_path": "table_3_15_negative_open.csv",
+      "exists": true
+    },
+    {
+      "name": "table_3_15_negative_open_json",
+      "relative_path": "table_3_15_negative_open.json",
+      "exists": true
+    }
+  ],
+  "runtime_assets": [
+    {
+      "name": "main_per_seed",
+      "relative_path": "main/per_seed_metrics.csv",
+      "exists": false
+    },
+    {
+      "name": "main_summary",
+      "relative_path": "main/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "ablation_summary",
+      "relative_path": "ablation/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "negative_summary",
+      "relative_path": "negative/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "micro_summary",
+      "relative_path": "micro/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "window_summary",
+      "relative_path": "window_sensitivity/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "train_ratio_summary",
+      "relative_path": "train_ratio/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "history_chain_summary",
+      "relative_path": "history_chain/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "noise_summary",
+      "relative_path": "noise_sensitivity/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "rho_summary",
+      "relative_path": "rho_sensitivity/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "backbone14_summary",
+      "relative_path": "backbone_icews14/summary.csv",
+      "exists": false
+    },
+    {
+      "name": "backbone0515_summary",
+      "relative_path": "backbone_icews05_15/summary.csv",
+      "exists": false
+    }
+  ],
+  "reported_ok": true,
+  "runtime_ok": false
+}

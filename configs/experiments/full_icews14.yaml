@@ -32,8 +32,6 @@ model:
   lora_dropout: 0.05
   lora_target_modules: [q_proj, v_proj]
   time_encoding_dim: 64
-  tcn_kernel_size: 2
-  tcn_dilations: [1, 2, 4, 8]
   tgn_neighbor_size: 10
   tgn_time_window_days: 14
   tgn_memory_dim: 200
@@ -41,7 +39,6 @@ model:
   fusion_hidden_dim: 128
   use_llm: true
   use_temporal: true
-  use_tcn: false
   use_tgn: true
   use_gate: true
   use_gs: false

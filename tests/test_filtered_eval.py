@@ -15,3 +15,4 @@ def test_filtered_evaluator_ignores_known_true_corruptions():
         ]
     )
     assert metrics.mrr == 1.0
+    assert "AUC-PR" not in metrics.to_dict()

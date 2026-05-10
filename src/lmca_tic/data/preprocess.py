@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import sys
+from bisect import bisect_left
 from collections import Counter, defaultdict
 from dataclasses import asdict
 from pathlib import Path
@@ -208,7 +209,7 @@ def relation_history_vector(
     relevant = [
         q.timestamp
         for q in history
-        if q.relation == relation and q.timestamp <= timestamp
+        if q.relation == relation and q.timestamp < timestamp
     ]
     relevant = sorted(relevant)[-window_size:]
     if not relevant:
@@ -218,6 +219,72 @@ def relation_history_vector(
     if len(ordered) < window_size:
         ordered = [0.0] * (window_size - len(ordered)) + ordered
     return ordered
+
+
+def entity_temporal_context(
+    history: list[TemporalQuadruple],
+    entity: str,
+    timestamp: int,
+    window_days: int,
+    max_neighbors: int,
+) -> tuple[list[str], list[str], list[float]]:
+    lower_bound = timestamp - window_days
+    neighbors: list[str] = []
+    relations: list[str] = []
+    deltas: list[float] = []
+    for quadruple in history:
+        if quadruple.timestamp >= timestamp:
+            continue
+        if quadruple.timestamp < lower_bound:
+            continue
+        delta = float(timestamp - quadruple.timestamp)
+        if quadruple.subject == entity:
+            neighbors.append(quadruple.object)
+            relations.append(quadruple.relation)
+            deltas.append(delta)
+        elif quadruple.object == entity:
+            neighbors.append(quadruple.subject)
+            relations.append(f"{quadruple.relation}__inverse")
+            deltas.append(delta)
+    return neighbors[-max_neighbors:], relations[-max_neighbors:], deltas[-max_neighbors:]
+
+
+def build_entity_history_index(
+    history: Iterable[TemporalQuadruple],
+) -> dict[str, list[tuple[int, str, str]]]:
+    index: dict[str, list[tuple[int, str, str]]] = defaultdict(list)
+    for quadruple in history:
+        index[quadruple.subject].append(
+            (quadruple.timestamp, quadruple.object, quadruple.relation)
+        )
+        index[quadruple.object].append(
+            (quadruple.timestamp, quadruple.subject, f"{quadruple.relation}__inverse")
+        )
+    for entries in index.values():
+        entries.sort()
+    return dict(index)
+
+
+def entity_temporal_context_from_index(
+    history_index: dict[str, list[tuple[int, str, str]]],
+    entity: str,
+    timestamp: int,
+    window_days: int,
+    max_neighbors: int,
+) -> tuple[list[str], list[str], list[float]]:
+    if max_neighbors <= 0:
+        return [], [], []
+    entries = history_index.get(entity, [])
+    if not entries:
+        return [], [], []
+    lower_bound = timestamp - window_days
+    start = bisect_left(entries, (lower_bound, "", ""))
+    end = bisect_left(entries, (timestamp, "", ""))
+    selected = entries[start:end][-max_neighbors:]
+    neighbors = [neighbor for _, neighbor, _ in selected]
+    relations = [relation for _, _, relation in selected]
+    deltas = [float(timestamp - event_timestamp) for event_timestamp, _, _ in selected]
+    return neighbors, relations, deltas
 
 
 def sample_temporal_neighbors(
@@ -231,48 +298,32 @@ def sample_temporal_neighbors(
     """Return neighbor entities, relations and Δt for both subject and object.
 
     Each neighbor entry comes from a quadruple with timestamp in
-    ``[timestamp - window_days, timestamp]``. The relation associated with
+    ``[timestamp - window_days, timestamp)``. The relation associated with
     each neighbor records whether the focal entity sat on the subject or
     object side of that historical edge so the encoder can recover
     direction-aware features.
     """
-
-    lower_bound = timestamp - window_days
-    subject_neighbors: list[str] = []
-    subject_relations: list[str] = []
-    subject_deltas: list[float] = []
-    object_neighbors: list[str] = []
-    object_relations: list[str] = []
-    object_deltas: list[float] = []
-    for quadruple in history:
-        if quadruple.timestamp > timestamp:
-            continue
-        if quadruple.timestamp < lower_bound:
-            continue
-        delta = float(timestamp - quadruple.timestamp)
-        if quadruple.subject == subject:
-            subject_neighbors.append(quadruple.object)
-            subject_relations.append(quadruple.relation)
-            subject_deltas.append(delta)
-        elif quadruple.object == subject:
-            subject_neighbors.append(quadruple.subject)
-            subject_relations.append(f"{quadruple.relation}__inverse")
-            subject_deltas.append(delta)
-        if quadruple.subject == obj:
-            object_neighbors.append(quadruple.object)
-            object_relations.append(quadruple.relation)
-            object_deltas.append(delta)
-        elif quadruple.object == obj:
-            object_neighbors.append(quadruple.subject)
-            object_relations.append(f"{quadruple.relation}__inverse")
-            object_deltas.append(delta)
+    subject_neighbors, subject_relations, subject_deltas = entity_temporal_context(
+        history=history,
+        entity=subject,
+        timestamp=timestamp,
+        window_days=window_days,
+        max_neighbors=max_neighbors,
+    )
+    object_neighbors, object_relations, object_deltas = entity_temporal_context(
+        history=history,
+        entity=obj,
+        timestamp=timestamp,
+        window_days=window_days,
+        max_neighbors=max_neighbors,
+    )
     return (
-        subject_neighbors[-max_neighbors:],
-        subject_relations[-max_neighbors:],
-        subject_deltas[-max_neighbors:],
-        object_neighbors[-max_neighbors:],
-        object_relations[-max_neighbors:],
-        object_deltas[-max_neighbors:],
+        subject_neighbors,
+        subject_relations,
+        subject_deltas,
+        object_neighbors,
+        object_relations,
+        object_deltas,
     )
 
 
@@ -284,17 +335,14 @@ def neighbor_time_deltas(
     max_neighbors: int,
 ) -> list[float]:
     """Backward-compatible helper kept for tests and notebooks."""
-
-    lower_bound = timestamp - window_days
-    deltas: list[float] = []
-    for quadruple in history:
-        if quadruple.timestamp > timestamp:
-            continue
-        if quadruple.timestamp < lower_bound:
-            continue
-        if quadruple.subject == entity or quadruple.object == entity:
-            deltas.append(float(timestamp - quadruple.timestamp))
-    return deltas[-max_neighbors:]
+    _, _, deltas = entity_temporal_context(
+        history=history,
+        entity=entity,
+        timestamp=timestamp,
+        window_days=window_days,
+        max_neighbors=max_neighbors,
+    )
+    return deltas
 
 
 def extract_entity_types(record, ontology_keys: list[str]) -> tuple[str, ...]:

@@ -1,0 +1,2 @@
+{"subject": "NewOrg", "relation": "meet", "timestamp": 8, "gold": "UN", "scores": {"China": -3.8769285678863525, "France": -2.959599733352661, "GroupA": -1.3533143997192383, "NewOrg": -5.843255043029785, "UN": -2.6858632564544678, "USA": -0.42155250906944275}}
+{"subject": "USA", "relation": "sanction", "timestamp": 9, "gold": "NewOrg", "scores": {"China": -2.7123570442199707, "France": -2.1688709259033203, "GroupA": 3.8656058311462402, "NewOrg": -4.313407897949219, "UN": -4.876757621765137, "USA": -1.1582216024398804}}

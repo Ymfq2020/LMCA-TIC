@@ -17,7 +17,7 @@ output_dir: outputs/ablation_wo_tcn_icews14
 log_dir: logs/ablation_wo_tcn_icews14
 checkpoint_dir: checkpoints/ablation_wo_tcn_icews14
 metadata:
-  notes: "legacy alias of ablation_wo_temporal; kept for backward compatibility"
+  notes: "legacy experiment name alias of ablation_wo_temporal; no separate TCN module remains in the model"
 model:
   llm_name: Qwen/Qwen3-8B
   embedding_dim: 200
@@ -28,7 +28,6 @@ model:
   fusion_hidden_dim: 128
   use_llm: true
   use_temporal: false
-  use_tcn: false
   use_tgn: true
   use_gate: true
   use_gs: false

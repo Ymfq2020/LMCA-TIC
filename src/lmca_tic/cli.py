@@ -23,7 +23,9 @@ from lmca_tic.experiments.runner import (
     run_train_ratio_sensitivity,
     run_window_sensitivity,
 )
+from lmca_tic.experiments.reported_results import audit_chapter3_assets, export_chapter3_reported_results
 from lmca_tic.training.trainer import LMCATICTrainer
+from lmca_tic.utils.io import write_json
 
 
 def main() -> None:
@@ -118,6 +120,15 @@ def main() -> None:
     baseline_parser.add_argument("--reference", required=True)
     baseline_parser.add_argument("--metrics", required=True)
     baseline_parser.add_argument("--output", required=True)
+
+    export_reported_parser = subparsers.add_parser("export-reported-results")
+    export_reported_parser.add_argument("--chapter", type=int, default=3, choices=[3])
+    export_reported_parser.add_argument("--output-dir", default="paper_reported_results/chapter3")
+
+    audit_parser = subparsers.add_parser("audit-chapter3")
+    audit_parser.add_argument("--experiment-root", default="outputs/experiments")
+    audit_parser.add_argument("--reported-root", default="paper_reported_results/chapter3")
+    audit_parser.add_argument("--output")
 
     args = parser.parse_args()
     if args.command == "preprocess":
@@ -255,6 +266,19 @@ def main() -> None:
         return
     if args.command == "merge-baselines":
         merge_reference_baselines(args.reference, args.metrics, args.output)
+        return
+    if args.command == "export-reported-results":
+        if args.chapter != 3:
+            raise ValueError(f"Unsupported chapter: {args.chapter}")
+        export_chapter3_reported_results(args.output_dir)
+        return
+    if args.command == "audit-chapter3":
+        payload = audit_chapter3_assets(
+            experiment_root=args.experiment_root,
+            reported_root=args.reported_root,
+        )
+        if args.output:
+            write_json(args.output, payload)
         return
 
     raise ValueError(f"Unknown command: {args.command}")

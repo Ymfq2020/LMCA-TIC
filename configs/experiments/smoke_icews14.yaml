@@ -30,15 +30,12 @@ model:
   lora_r: 4
   lora_alpha: 8
   lora_dropout: 0.05
-  tcn_kernel_size: 2
-  tcn_dilations: [1, 2]
   tgn_neighbor_size: 4
   tgn_time_window_days: 7
   tgn_memory_dim: 64
   tgn_time_decay_init: 0.1
   fusion_hidden_dim: 32
   use_llm: true
-  use_tcn: true
   use_tgn: true
   use_gate: true
   use_gs: false

@@ -1,7 +1,14 @@
 from pathlib import Path
 
 from lmca_tic.config.schemas import ExperimentConfig
-from lmca_tic.data.preprocess import LocalTKGPreprocessor, neighbor_time_deltas, sample_temporal_neighbors
+from lmca_tic.data.preprocess import (
+    LocalTKGPreprocessor,
+    build_entity_history_index,
+    entity_temporal_context_from_index,
+    neighbor_time_deltas,
+    relation_history_vector,
+    sample_temporal_neighbors,
+)
 from lmca_tic.utils.io import read_json, read_jsonl
 
 
@@ -27,7 +34,7 @@ def test_preprocess_builds_inductive_subset(tmp_path):
     assert "USA\tmeet\t1" in filtered
 
 
-def test_temporal_neighbor_sampling_blocks_future_leakage():
+def test_temporal_neighbor_sampling_uses_strictly_past_history():
     from lmca_tic.data.types import TemporalQuadruple
 
     history = [
@@ -43,8 +50,45 @@ def test_temporal_neighbor_sampling_blocks_future_leakage():
         _,
         _,
     ) = sample_temporal_neighbors(history, "A", "B", timestamp=3, window_days=5, max_neighbors=10)
+    assert subject_neighbors == ["B"]
+    assert subject_relations == ["r"]
+    assert subject_deltas == [2.0]
     assert "D" not in subject_neighbors
+    assert "C" not in subject_neighbors
     assert len(subject_neighbors) == len(subject_relations) == len(subject_deltas)
     assert all(delta >= 0 for delta in subject_deltas)
     deltas = neighbor_time_deltas(history, "A", timestamp=3, window_days=5, max_neighbors=10)
     assert all(delta >= 0 for delta in deltas)
+    assert deltas == [2.0]
+    assert relation_history_vector(history, "r", timestamp=3, window_size=4) == [0.0, 0.0, 0.0, 1.0]
+
+
+def test_entity_history_index_recomputes_context_for_each_query_timestamp():
+    from lmca_tic.data.types import TemporalQuadruple
+
+    history = [
+        TemporalQuadruple("A", "r", "B", 1, "train"),
+        TemporalQuadruple("A", "r", "C", 4, "train"),
+        TemporalQuadruple("A", "r", "D", 5, "train"),
+    ]
+    history_index = build_entity_history_index(history)
+    neighbors, relations, deltas = entity_temporal_context_from_index(
+        history_index,
+        entity="A",
+        timestamp=5,
+        window_days=2,
+        max_neighbors=10,
+    )
+    assert neighbors == ["C"]
+    assert relations == ["r"]
+    assert deltas == [1.0]
+    neighbors, relations, deltas = entity_temporal_context_from_index(
+        history_index,
+        entity="A",
+        timestamp=6,
+        window_days=2,
+        max_neighbors=10,
+    )
+    assert neighbors == ["C", "D"]
+    assert relations == ["r", "r"]
+    assert deltas == [2.0, 1.0]

@@ -1,0 +1,15 @@
+[
+  {
+    "experiment": "smoke_icews14",
+    "num_runs": 3,
+    "dataset": "ICEWS14-SMOKE",
+    "MRR_mean": 0.47222222222222227,
+    "MRR_std": 0.19245008972987526,
+    "Hits@1_mean": 0.3333333333333333,
+    "Hits@1_std": 0.28867513459481287,
+    "Hits@3_mean": 0.5,
+    "Hits@3_std": 0.0,
+    "Hits@10_mean": 1.0,
+    "Hits@10_std": 0.0
+  }
+]

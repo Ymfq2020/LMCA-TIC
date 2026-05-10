@@ -1,0 +1,10 @@
+2026-05-10 10:56:21,715 | INFO | runtime device=cpu cuda_available=False cuda_device_count=0 amp=False amp_dtype=disabled grad_scaler=False data_parallel=False
+2026-05-10 10:56:21,715 | INFO | dataset sizes train=5 valid=2 test=2 micro_batch=2 grad_accum=1 eval_batch=2 candidate_chunk=8
+2026-05-10 10:56:21,729 | INFO | epoch=1/2 batch=1/3 opt_step=1 loss=1.748091 lr=0.001 batch_step_sec=0.004 batches_per_sec=209.479 epoch_eta_sec=0.0 gpu_util=NA gpu_mem_mb=NA/NA
+2026-05-10 10:56:21,733 | INFO | epoch=1/2 batch=2/3 opt_step=2 loss=1.339815 lr=0.001 batch_step_sec=0.003 batches_per_sec=241.119 epoch_eta_sec=0.0 gpu_util=NA gpu_mem_mb=NA/NA
+2026-05-10 10:56:21,736 | INFO | epoch=1/2 batch=3/3 opt_step=3 loss=1.099668 lr=0.001 batch_step_sec=0.003 batches_per_sec=265.431 epoch_eta_sec=0.0 gpu_util=NA gpu_mem_mb=NA/NA
+2026-05-10 10:56:21,738 | INFO | epoch=1 loss=1.099668 valid_mrr=0.6667 lr=0.001 epoch_sec=0.01 peak_mem_mb=0.0
+2026-05-10 10:56:21,744 | INFO | epoch=2/2 batch=1/3 opt_step=4 loss=0.408958 lr=0.001 batch_step_sec=0.003 batches_per_sec=305.111 epoch_eta_sec=0.0 gpu_util=NA gpu_mem_mb=NA/NA
+2026-05-10 10:56:21,748 | INFO | epoch=2/2 batch=2/3 opt_step=5 loss=0.280989 lr=0.001 batch_step_sec=0.003 batches_per_sec=302.330 epoch_eta_sec=0.0 gpu_util=NA gpu_mem_mb=NA/NA
+2026-05-10 10:56:21,751 | INFO | epoch=2/2 batch=3/3 opt_step=6 loss=0.188771 lr=0.001 batch_step_sec=0.003 batches_per_sec=313.319 epoch_eta_sec=0.0 gpu_util=NA gpu_mem_mb=NA/NA
+2026-05-10 10:56:21,752 | INFO | epoch=2 loss=0.188771 valid_mrr=0.6667 lr=0.001 epoch_sec=0.01 peak_mem_mb=0.0

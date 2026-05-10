@@ -1,0 +1,82 @@
+{
+  "created_at_utc": "2026-05-10T02:56:21.663762+00:00",
+  "git_hash": "aec58aadae288accdc3ad1ec737c424b99c9c400",
+  "config": {
+    "name": "smoke_icews14",
+    "dataset_name": "ICEWS14-SMOKE",
+    "raw_dir": "data/smoke/icews14",
+    "processed_dir": "outputs/experiments/_processed/smoke_icews14_seed123",
+    "bie_path": "data/smoke/bie/entity_metadata.jsonl",
+    "bie_ordered_keys": [
+      "entity_type",
+      "country",
+      "sector"
+    ],
+    "ontology_keys": [
+      "entity_type",
+      "country"
+    ],
+    "delimiter": "\t",
+    "seed": 123,
+    "num_epochs": 2,
+    "micro_batch_size": 2,
+    "eval_batch_size": 2,
+    "gradient_accumulation_steps": 1,
+    "num_workers": 0,
+    "learning_rate": 0.001,
+    "warmup_ratio": 0.0,
+    "early_stopping_patience": 2,
+    "amp_enabled": false,
+    "enable_data_parallel": false,
+    "candidate_chunk_size": 8,
+    "log_every_n_steps": 1,
+    "output_dir": "outputs/experiments/smoke_icews14/seed_123/outputs",
+    "log_dir": "outputs/experiments/smoke_icews14/seed_123/logs",
+    "checkpoint_dir": "outputs/experiments/smoke_icews14/seed_123/checkpoints",
+    "run_train": true,
+    "run_eval": true,
+    "baseline_reference_path": "references/table3_2_reference.csv",
+    "model": {
+      "llm_name": "Qwen/Qwen3-8B",
+      "smoke_llm_name": "distilbert-base-uncased",
+      "embedding_dim": 64,
+      "lora_r": 4,
+      "lora_alpha": 8,
+      "lora_dropout": 0.05,
+      "lora_target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "time_encoding_dim": 64,
+      "tgn_neighbor_size": 4,
+      "tgn_time_window_days": 7,
+      "tgn_memory_dim": 64,
+      "tgn_time_decay_init": 0.1,
+      "fusion_hidden_dim": 32,
+      "use_llm": true,
+      "use_temporal": true,
+      "use_tgn": true,
+      "use_gate": true,
+      "use_gs": false,
+      "use_ni": true,
+      "use_sl": true,
+      "use_4bit": false
+    },
+    "negative_sampling": {
+      "mode": "ontology_weighted",
+      "k_recall": 16,
+      "n_neg": 4,
+      "tau": 0.7,
+      "alpha": 0.5,
+      "rho": 0.3,
+      "faiss_enabled": false
+    },
+    "metadata": {
+      "smoke_mode": true,
+      "experiment_run_name": "smoke_icews14_seed123"
+    }
+  },
+  "smoke_mode": true,
+  "device": "cpu",
+  "data_parallel": false
+}

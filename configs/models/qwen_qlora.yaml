@@ -4,15 +4,12 @@ embedding_dim: 200
 lora_r: 16
 lora_alpha: 32
 lora_dropout: 0.05
-tcn_kernel_size: 2
-tcn_dilations: [1, 2, 4, 8]
 tgn_neighbor_size: 10
 tgn_time_window_days: 30
 tgn_memory_dim: 200
 tgn_time_decay_init: 0.1
 fusion_hidden_dim: 128
 use_llm: true
-use_tcn: true
 use_tgn: true
 use_gate: true
 use_gs: false

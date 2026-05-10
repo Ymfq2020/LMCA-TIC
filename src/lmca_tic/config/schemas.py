@@ -28,8 +28,6 @@ class ModelConfig:
     lora_dropout: float = 0.05
     lora_target_modules: list[str] = field(default_factory=lambda: ["q_proj", "v_proj"])
     time_encoding_dim: int = 64
-    tcn_kernel_size: int = 2
-    tcn_dilations: list[int] = field(default_factory=lambda: [1, 2, 4, 8])
     tgn_neighbor_size: int = 10
     tgn_time_window_days: int = 14
     tgn_memory_dim: int = 200
@@ -37,7 +35,6 @@ class ModelConfig:
     fusion_hidden_dim: int = 128
     use_llm: bool = True
     use_temporal: bool = True
-    use_tcn: bool = False
     use_tgn: bool = True
     use_gate: bool = True
     use_gs: bool = False

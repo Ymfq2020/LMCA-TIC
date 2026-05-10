@@ -34,6 +34,14 @@ from lmca_tic.utils.deps import require_dependency
 _BaseModule = nn.Module if hasattr(nn, "Module") else object
 
 
+def masked_mean_pool(hidden_states, attention_mask=None):
+    if attention_mask is None:
+        return hidden_states.mean(dim=1)
+    mask = attention_mask.unsqueeze(-1).to(hidden_states.dtype)
+    denom = mask.sum(dim=1).clamp_min(1.0)
+    return (hidden_states * mask).sum(dim=1) / denom
+
+
 class HashTextEncoder(_BaseModule):
     def __init__(self, output_dim: int, vocab_size: int = 8192) -> None:
         require_dependency(torch, "torch")
@@ -130,5 +138,5 @@ class LLMTextEncoder(_BaseModule):
         device = self.proj.weight.device
         encoded = {key: value.to(device) for key, value in encoded.items()}
         outputs = self.backend(**encoded)
-        pooled = outputs.last_hidden_state[:, -1, :]
+        pooled = masked_mean_pool(outputs.last_hidden_state, encoded.get("attention_mask"))
         return self.proj(pooled)

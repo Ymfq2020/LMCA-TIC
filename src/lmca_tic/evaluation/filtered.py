@@ -12,18 +12,14 @@ class RankingMetrics:
     hits_at_1: float
     hits_at_3: float
     hits_at_10: float
-    auc_pr: float | None = None
 
     def to_dict(self) -> dict[str, float]:
-        payload = {
+        return {
             "MRR": self.mrr,
             "Hits@1": self.hits_at_1,
             "Hits@3": self.hits_at_3,
             "Hits@10": self.hits_at_10,
         }
-        if self.auc_pr is not None:
-            payload["AUC-PR"] = self.auc_pr
-        return payload
 
 
 class FilteredEvaluator:
@@ -38,7 +34,6 @@ class FilteredEvaluator:
         hits1: list[float] = []
         hits3: list[float] = []
         hits10: list[float] = []
-        pr_values: list[float] = []
 
         for prediction in predictions:
             rank = self._filtered_rank(
@@ -52,14 +47,12 @@ class FilteredEvaluator:
             hits1.append(1.0 if rank <= 1 else 0.0)
             hits3.append(1.0 if rank <= 3 else 0.0)
             hits10.append(1.0 if rank <= 10 else 0.0)
-            pr_values.append(1.0 / (rank + 1.0))
 
         return RankingMetrics(
             mrr=mean(reciprocal_ranks) if reciprocal_ranks else 0.0,
             hits_at_1=mean(hits1) if hits1 else 0.0,
             hits_at_3=mean(hits3) if hits3 else 0.0,
             hits_at_10=mean(hits10) if hits10 else 0.0,
-            auc_pr=mean(pr_values) if pr_values else 0.0,
         )
 
     def _filtered_rank(

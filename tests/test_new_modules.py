@@ -13,6 +13,7 @@ from lmca_tic.config.schemas import ModelConfig
 from lmca_tic.models.fusion import AdaptiveFusion
 from lmca_tic.models.scoring import BilinearScorer
 from lmca_tic.models.temporal_graph import TemporalGraphEncoder
+from lmca_tic.models.text_encoder import masked_mean_pool
 from lmca_tic.models.time_encoder import SinusoidalTimeEncoder, TimeAwareRelation
 
 
@@ -106,3 +107,10 @@ def test_bilinear_scorer_uses_r_t():
     score_with_relation = scorer(subject, r_t_nonzero, obj)
     # Non-zero r_t must change the resulting bilinear score.
     assert not torch.allclose(score_no_relation, score_with_relation)
+
+
+def test_masked_mean_pool_ignores_padding_tokens():
+    hidden_states = torch.tensor([[[1.0, 1.0], [3.0, 3.0], [100.0, 100.0]]])
+    attention_mask = torch.tensor([[1, 1, 0]])
+    pooled = masked_mean_pool(hidden_states, attention_mask)
+    assert torch.allclose(pooled, torch.tensor([[2.0, 2.0]]))

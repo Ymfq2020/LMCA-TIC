@@ -1,0 +1,56 @@
+{
+  "China": {
+    "entity_id": "China",
+    "entity_name": "China",
+    "attributes": {
+      "entity_type": "Country",
+      "country": "CN",
+      "sector": "Government"
+    }
+  },
+  "France": {
+    "entity_id": "France",
+    "entity_name": "France",
+    "attributes": {
+      "entity_type": "Country",
+      "country": "FR",
+      "sector": "Government"
+    }
+  },
+  "GroupA": {
+    "entity_id": "GroupA",
+    "entity_name": "Group A",
+    "attributes": {
+      "entity_type": "Organization",
+      "country": "INTL",
+      "sector": "Security"
+    }
+  },
+  "NewOrg": {
+    "entity_id": "NewOrg",
+    "entity_name": "New Organization",
+    "attributes": {
+      "entity_type": "Organization",
+      "country": "INTL",
+      "sector": "Diplomacy"
+    }
+  },
+  "UN": {
+    "entity_id": "UN",
+    "entity_name": "United Nations",
+    "attributes": {
+      "entity_type": "Organization",
+      "country": "INTL",
+      "sector": "Diplomacy"
+    }
+  },
+  "USA": {
+    "entity_id": "USA",
+    "entity_name": "United States",
+    "attributes": {
+      "entity_type": "Country",
+      "country": "US",
+      "sector": "Government"
+    }
+  }
+}

@@ -24,3 +24,28 @@ def test_load_a10_demo_plus_config():
     assert config.gradient_accumulation_steps == 2
     assert config.model.use_4bit is True
     assert config.negative_sampling.k_recall == 16
+
+
+def test_load_config_ignores_legacy_tcn_keys(tmp_path):
+    config_path = tmp_path / "legacy_tcn.yaml"
+    config_path.write_text(
+        "\n".join(
+            [
+                "name: legacy_tcn",
+                "dataset_name: smoke",
+                "raw_dir: data/raw",
+                "processed_dir: data/processed",
+                "model:",
+                "  llm_name: test-llm",
+                "  embedding_dim: 32",
+                "  use_tcn: true",
+                "  tcn_kernel_size: 3",
+                "  tcn_dilations: [1, 2]",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    config = load_experiment_config(config_path)
+    assert config.name == "legacy_tcn"
+    assert config.model.llm_name == "test-llm"
+    assert config.model.embedding_dim == 32

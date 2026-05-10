@@ -5,7 +5,7 @@
 - 本地 ICEWS 数据挂载与预处理
 - 基于图谱内部统计与规则归纳的背景知识增强（离线 BIE）
 - `Qwen3-8B + LoRA/QLoRA` 文本语义注入
-- `TCN` 关系时序建模
+- 查询时间编码与局部时序邻域建模
 - 基于 `PyG` 风格接口的时间图编码
 - 门控融合与双线性打分
 - 基于 `KGIST` 摘要的困难负例扩展
@@ -39,7 +39,7 @@ src/lmca_tic
   config/       配置与 dataclass schema
   data/         数据契约、预处理与数据集
   kgist/        由 kgist.ipynb 重构得到的规则摘要与负误差模块
-  models/       LLM、TCN、TGN、融合与打分
+  models/       LLM、时间编码、TGN、融合与打分
   training/     负例采样与训练器
   evaluation/   Filtered 指标与评测
   experiments/  实验编排与汇总

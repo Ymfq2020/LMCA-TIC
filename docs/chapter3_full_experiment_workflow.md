@@ -101,7 +101,7 @@ python3 -m lmca_tic.cli run-suite --suite micro --seeds 42 123 456 789 1024 \
   --output-root outputs/experiments/micro
 ```
 
-宏观消融 4 项：`ablation_wo_llm`、`ablation_wo_tgn`、`ablation_wo_temporal`、`ablation_wo_gate`。`ablation_wo_tcn` 只是 `wo_temporal` 的旧别名，保留兼容。
+宏观消融 4 项：`ablation_wo_llm`、`ablation_wo_tgn`、`ablation_wo_temporal`、`ablation_wo_gate`。`ablation_wo_tcn` 只是 `wo_temporal` 的旧实验名别名，保留兼容；当前代码库不再包含单独的 TCN 分支。
 
 ## 6. 噪声鲁棒（表 3-11）
 
